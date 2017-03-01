@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">COMP580Proto</string>
+    <string name="title_activity_radial_overlay">RadialOverlayActivity</string>
+</resources>
