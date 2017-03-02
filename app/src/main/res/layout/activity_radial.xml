@@ -13,4 +13,13 @@
     tools:context="edu.unc.miller.comp580proto.RadialActivity">
 
 
+    <!--Button width and height is 2/3 that of the ones in the Java file-->
+    <Button
+        android:id="@+id/selectbutton"
+        android:layout_width="94dp"
+        android:layout_height="84dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Select"
+        />
 </RelativeLayout>

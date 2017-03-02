@@ -1,0 +1,6 @@
+Update Log (Starting 3/2):
+
+3/2
+===
+Work on the swipe character selection to incorporate single character grab (swipe on button) and output (bring back to center).
+*It seems to lag on some builds so that needs to be looked into.  Sometimes it works fine when it's built, sometimes it lags, and sometimes you have to wait awhile to actually get it to work.  Comment on the onTouch(MotionEvent e) method offers some suggestions and additional explanation.
