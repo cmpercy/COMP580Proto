@@ -4,8 +4,7 @@
     android:id="@+id/activity_radial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+
     android:background="@android:color/transparent"
     android:screenOrientation="landscape"
     android:focusable="true"
@@ -23,6 +22,51 @@
         android:layout_height="84dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:background="#FFF"
+        android:textColor="#000"
         android:text="Select"
         />
+
+    <Button
+        android:id="@+id/space_button"
+        android:layout_width="@dimen/extra_buttons_width"
+        android:layout_height="@dimen/extra_buttons_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/space_button_text"
+        android:background="#FFF"
+        android:textColor="#000"
+        android:onClick="spacePressed"/>
+
+    <Button
+        android:id="@+id/space_button_2"
+        android:layout_width="@dimen/extra_buttons_width"
+        android:layout_height="@dimen/extra_buttons_height"
+        android:layout_marginTop="@dimen/editable_text_box_height"
+        android:text="@string/space_button_text"
+        android:background="#FFF"
+        android:textColor="#000"
+        android:onClick="spacePressed"/>
+    
+    <Button
+        android:id="@+id/backspace_button"
+        android:layout_width="@dimen/extra_buttons_width"
+        android:layout_height="@dimen/extra_buttons_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/backspace_button_text"
+        android:background="#FFF"
+        android:textColor="#000"
+        android:onClick="backspacePressed"/>
+
+    <Button
+        android:id="@+id/backspace_button_2"
+        android:layout_width="@dimen/extra_buttons_width"
+        android:layout_height="@dimen/extra_buttons_height"
+        android:text="@string/backspace_button_text"
+        android:background="#FFF"
+        android:textColor="#000"
+        android:layout_below="@+id/radial_text_field"
+        android:layout_alignParentEnd="true"
+        android:onClick="backspacePressed"/>
 </RelativeLayout>

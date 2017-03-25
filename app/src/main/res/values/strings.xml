@@ -9,4 +9,6 @@
     <string name="i_to_p_text">I - P</string>
     <string name="q_to_x_text">Q - X</string>
     <string name="y_to_z_text">Y - Z</string>
+    <string name="space_button_text">SPACE</string>
+    <string name="backspace_button_text">BACKSPACE</string>
 </resources>

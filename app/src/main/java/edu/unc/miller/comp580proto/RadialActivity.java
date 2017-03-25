@@ -22,6 +22,7 @@ public class RadialActivity extends AppCompatActivity {
     Activity activity;
     int setter;
     ArrayList<Region> regionList;
+    ArrayList<Region> extraRegionList;
     Region centralRegion;
     Stack<String> charStack = new Stack<>();
     boolean pushed = false;
@@ -96,6 +97,7 @@ public class RadialActivity extends AppCompatActivity {
     public void initialize(){
         updateUserString();
         setter = AToZActivity.indicator;
+        //prepareExtraButtons();
         //Enter immersive mode
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -125,14 +127,14 @@ public class RadialActivity extends AppCompatActivity {
         rl = (RelativeLayout)findViewById(R.id.activity_radial);
         int radius = 325;
         int numbutt = 8;
-        int buttonWidth = 140; int buttonHeight = 125;
+        int buttonWidth = Vars.BUTTON_WIDTH; int buttonHeight = Vars.BUTTON_HEIGHT;
         double section = 360/numbutt;
 
         regionList = new ArrayList<>(numbutt);
         //Create a series of "circular" buttons in a circle
         for(int i=0;i<numbutt;i++){
             double degrees = i*section;
-            double xpos = radius*Math.cos(Math.toRadians(degrees))+(screenwidth/2)-75;  //50 is the xsize of the circle image (I moved it over some though 1.5*50)
+            double xpos = radius*Math.cos(Math.toRadians(degrees))+(screenwidth/2)-25;  //50 is the xsize of the circle image (I moved it over some though 1.5*50)
             double ypos = radius*Math.sin(Math.toRadians(degrees))+(screenheight/2)+10; //50 is the ysize of the circle image
             ImageView iv = new ImageView(this);
             imageResSetter(iv,setter);   //set the image for the circular button
@@ -175,7 +177,9 @@ public class RadialActivity extends AppCompatActivity {
         if(in==15){b.setText("P");}if(in==16){b.setText("Q");}if(in==17){b.setText("R");}
         if(in==18){b.setText("S");}if(in==19){b.setText("T");}if(in==20){b.setText("U");}
         if(in==21){b.setText("V");}if(in==22){b.setText("W");}if(in==23){b.setText("X");}
-        if(in==24){b.setText("Y");}if(in==25){b.setText("Z");}
+        if(in==24){b.setText("Y");}if(in==25){b.setText("Z");}if(in==26){b.setText(".");}
+        if(in==27){b.setText(",");}if(in==28){b.setText("!");}if(in==29){b.setText("?");}
+        if(in==30){b.setText(";");}if(in==31){b.setText("@");}
     }
 
     //Pick the resource to load into an imageview
@@ -189,7 +193,18 @@ public class RadialActivity extends AppCompatActivity {
         if(in==15){imv.setImageResource(R.drawable.p);}if(in==16){imv.setImageResource(R.drawable.q);}if(in==17){imv.setImageResource(R.drawable.r);}
         if(in==18){imv.setImageResource(R.drawable.s);}if(in==19){imv.setImageResource(R.drawable.t);}if(in==20){imv.setImageResource(R.drawable.u);}
         if(in==21){imv.setImageResource(R.drawable.v);}if(in==22){imv.setImageResource(R.drawable.w);}if(in==23){imv.setImageResource(R.drawable.x);}
-        if(in==24){imv.setImageResource(R.drawable.y);}if(in==25){imv.setImageResource(R.drawable.z);}
+        if(in==24){imv.setImageResource(R.drawable.y);}if(in==25){imv.setImageResource(R.drawable.z);}if(in==26){imv.setImageResource(R.drawable.period);}
+        if(in==27){imv.setImageResource(R.drawable.comma);}if(in==28){imv.setImageResource(R.drawable.exclamation);}if(in==29){imv.setImageResource(R.drawable.question);}
+        if(in==30){imv.setImageResource(R.drawable.semicolon);}if(in==31){imv.setImageResource(R.drawable.at);}
+    }
+
+    public void backspacePressed(View view){
+        deleteLastCharUserString();
+    }
+
+    public void spacePressed(View view){
+        appendUserString(" ");
+        print(" ");
     }
 
     public void drawRegions(){
@@ -204,6 +219,22 @@ public class RadialActivity extends AppCompatActivity {
             rl.addView(butt);
 
         }
+    }
+
+    public void prepareExtraButtons(){
+        //TODO Make and handle regions for the extra buttons
+    }
+
+    //Delete the last character of the userString
+    public void deleteLastCharUserString(){
+        String rephrase;
+        if(Vars.userString!=null && Vars.userString.length()>=1){
+            rephrase = Vars.userString.substring(0,Vars.userString.length()-1);
+            Vars.userString = rephrase;
+        }
+        EditText editText = (EditText)findViewById(R.id.radial_text_field);
+        if(editText!=null) editText.setText(Vars.userString);
+        print("Deleted last character");
     }
 
     public void appendUserString(String s){

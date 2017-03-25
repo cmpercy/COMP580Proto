@@ -6,4 +6,6 @@
     <dimen name="main_activity_button_text_size">30sp</dimen>
     <dimen name="activity_margin_top">20dp</dimen>
     <dimen name="editable_text_box_height">40dp</dimen>
+    <dimen name="extra_buttons_width">150dp</dimen>
+    <dimen name="extra_buttons_height">100dp</dimen>
 </resources>
