@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">COMP580Proto</string>
     <string name="title_activity_radial_overlay">RadialOverlayActivity</string>
+    <string name="numbers_and_symbols_text">Numbers and Symbols</string>
+    <string name="a_to_z_text">A - Z</string>
+    <string name="edit_text_text">Edit Text</string>
+    <string name="most_popular_words_text">Most Popular Words</string>
+    <string name="a_to_h_text">A - H</string>
+    <string name="i_to_p_text">I - P</string>
+    <string name="q_to_x_text">Q - X</string>
+    <string name="y_to_z_text">Y - Z</string>
 </resources>

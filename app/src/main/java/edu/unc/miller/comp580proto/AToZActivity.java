@@ -1,50 +1,49 @@
 package edu.unc.miller.comp580proto;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class AToZActivity extends AppCompatActivity {
 
-    RelativeLayout rl;
+    public static int indicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+        setContentView(R.layout.a_to_z);
         initialize();
     }
 
-    public void mainButtonClicked(View view){
+    public void aToZButtonClicked(View view){
+        Intent intent;
         switch(view.getId()){
-            case R.id.numbers_and_symbols_button:
-                //TODO
-                break;
-            case R.id.a_to_z_button:
-                Intent intent = new Intent(this, AToZActivity.class);
+            case R.id.a_to_h_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 0;  //0 -> a-h triggered
                 startActivity(intent);
                 break;
-            case R.id.edit_text_button:
-                //TODO
+            case R.id.i_to_p_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 8;  //8 -> i-p triggered
+                startActivity(intent);
                 break;
-            case R.id.most_popular_words_button:
-                //TODO
+            case R.id.q_to_x_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 16; //16 -> q-x triggered
+                startActivity(intent);
+                break;
+            case R.id.y_to_z_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 24; //24 -> y-z triggered
+                startActivity(intent);
                 break;
             default:
-                //Do nothing, no identified button press
+                //Do nothing
                 break;
         }
     }
-
-
-//    public void mainButt(View v){
-//        Intent intent = new Intent(this, RadialActivity.class);
-//        startActivity(intent);
-//    }
 
     public void initialize(){
         //Enter immersive mode on app start

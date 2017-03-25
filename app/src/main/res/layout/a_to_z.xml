@@ -12,21 +12,21 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/numbers_and_symbols_button"
+            android:id="@+id/a_to_h_button"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/numbers_and_symbols_text"
-            android:onClick="mainButtonClicked"/>
+            android:text="@string/a_to_h_text"
+            android:onClick="aToZButtonClicked"/>
         <Button
-            android:id="@+id/a_to_z_button"
+            android:id="@+id/i_to_p_button"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/a_to_z_text"
-            android:onClick="mainButtonClicked"/>
+            android:text="@string/i_to_p_text"
+            android:onClick="aToZButtonClicked"/>
     </LinearLayout>
     <LinearLayout
         android:layout_height="0dp"
@@ -34,20 +34,20 @@
         android:layout_weight="1"
         android:orientation="horizontal">
         <Button
-            android:id="@+id/edit_text_button"
+            android:id="@+id/q_to_x_button"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/edit_text_text"
-            android:onClick="mainButtonClicked"/>
+            android:text="@string/q_to_x_text"
+            android:onClick="aToZButtonClicked"/>
         <Button
-            android:id="@+id/most_popular_words_button"
+            android:id="@+id/y_to_z_button"
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/most_popular_words_text"
-            android:onClick="mainButtonClicked"/>
+            android:text="@string/y_to_z_text"
+            android:onClick="aToZButtonClicked"/>
     </LinearLayout>
 </LinearLayout>

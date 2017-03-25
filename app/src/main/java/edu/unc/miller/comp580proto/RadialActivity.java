@@ -17,6 +17,7 @@ import java.util.Stack;
 
 public class RadialActivity extends AppCompatActivity {
 
+    int setter;
     ArrayList<Region> regionList;
     Region centralRegion;
     Stack<String> charStack = new Stack<>();
@@ -37,6 +38,14 @@ public class RadialActivity extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus){
             super.onWindowFocusChanged(hasFocus);
             if(hasFocus){
+                //Re-enter immersive mode
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
                 //Create the region for the central button that performs character selection confirmation
                 Button butt = (Button)findViewById(R.id.selectbutton);
                 float regionx = butt.getX(); float regiony = butt.getY();
@@ -81,13 +90,22 @@ public class RadialActivity extends AppCompatActivity {
     protected void onPause(){super.onPause();}
 
     public void initialize(){
+        setter = AToZActivity.indicator;
+        //Enter immersive mode
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         //onClick listener for the radial buttons
         View.OnClickListener buttonListener = new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //Stuff to be executed when a button is clicked
+                //Stuff to be executed when any button is clicked
                 Button registeredButton = (Button)findViewById(v.getId());
-                if(registeredButton!=null)print(registeredButton.getText());
+                if(registeredButton!=null) print(registeredButton.getText());
             }
         };
         displaymetrics = new DisplayMetrics();
@@ -96,7 +114,7 @@ public class RadialActivity extends AppCompatActivity {
         screenwidth = displaymetrics.widthPixels;
 
         rl = (RelativeLayout)findViewById(R.id.activity_radial);
-        int radius = 250;
+        int radius = 275;
         int numbutt = 8;
         int buttonWidth = 140; int buttonHeight = 125;
         double section = 360/numbutt;
@@ -108,7 +126,7 @@ public class RadialActivity extends AppCompatActivity {
             double xpos = radius*Math.cos(Math.toRadians(degrees))+(screenwidth/2)-75;  //50 is the xsize of the circle image (I moved it over some though 1.5*50)
             double ypos = radius*Math.sin(Math.toRadians(degrees))+(screenheight/2)-50; //50 is the ysize of the circle image
             ImageView iv = new ImageView(this);
-            imageResSetter(iv,i);
+            imageResSetter(iv,setter);   //set the image for the circular button
             //Set coordinates of the circle imageview
             iv.setX((float)xpos);
             iv.setY((float)ypos);
@@ -123,7 +141,7 @@ public class RadialActivity extends AppCompatActivity {
             //butt.setAlpha(0.0f);      //makes buttons transparent when uncommented
             butt.setWidth(buttonWidth);
             butt.setHeight(buttonHeight);
-            buttonTextSetter(butt,i);
+            buttonTextSetter(butt,setter);   //set the text for the circular button
             butt.setOnClickListener(buttonListener);
             //Create button regions (used for slide motion detection) and add them to a list
             float regionx = butt.getX(); float regiony = butt.getY();
@@ -132,7 +150,9 @@ public class RadialActivity extends AppCompatActivity {
             Region buttonRegion = new Region(regionx,regionx+(float)buttonWidth,regiony,regiony+(float)buttonHeight,label);
             regionList.add(buttonRegion);
             rl.addView(butt);
+            setter++;
         }
+        AToZActivity.indicator = 0;
     }
 
 
@@ -140,14 +160,27 @@ public class RadialActivity extends AppCompatActivity {
     public void buttonTextSetter(Button b, int in){
         if(in==0){b.setText("A");}if(in==1){b.setText("B");}if(in==2){b.setText("C");}
         if(in==3){b.setText("D");}if(in==4){b.setText("E");}if(in==5){b.setText("F");}
-        if(in==6){b.setText("G");}if(in==7){b.setText("H");}
+        if(in==6){b.setText("G");}if(in==7){b.setText("H");}if(in==8){b.setText("I");}
+        if(in==9){b.setText("J");}if(in==10){b.setText("K");}if(in==11){b.setText("L");}
+        if(in==12){b.setText("M");}if(in==13){b.setText("N");}if(in==14){b.setText("O");}
+        if(in==15){b.setText("P");}if(in==16){b.setText("Q");}if(in==17){b.setText("R");}
+        if(in==18){b.setText("S");}if(in==19){b.setText("T");}if(in==20){b.setText("U");}
+        if(in==21){b.setText("V");}if(in==22){b.setText("W");}if(in==23){b.setText("X");}
+        if(in==24){b.setText("Y");}if(in==25){b.setText("Z");}
     }
 
     //Pick the resource to load into an imageview
+    //24point font for the letters
     public void imageResSetter(ImageView imv, int in){
         if(in==0){imv.setImageResource(R.drawable.a);}if(in==1){imv.setImageResource(R.drawable.b);}if(in==2){imv.setImageResource(R.drawable.c);}
         if(in==3){imv.setImageResource(R.drawable.d);}if(in==4){imv.setImageResource(R.drawable.e);}if(in==5){imv.setImageResource(R.drawable.f);}
-        if(in==6){imv.setImageResource(R.drawable.g);}if(in==7){imv.setImageResource(R.drawable.h);}
+        if(in==6){imv.setImageResource(R.drawable.g);}if(in==7){imv.setImageResource(R.drawable.h);}if(in==8){imv.setImageResource(R.drawable.i);}
+        if(in==9){imv.setImageResource(R.drawable.j);}if(in==10){imv.setImageResource(R.drawable.k);}if(in==11){imv.setImageResource(R.drawable.l);}
+        if(in==12){imv.setImageResource(R.drawable.m);}if(in==13){imv.setImageResource(R.drawable.n);}if(in==14){imv.setImageResource(R.drawable.o);}
+        if(in==15){imv.setImageResource(R.drawable.p);}if(in==16){imv.setImageResource(R.drawable.q);}if(in==17){imv.setImageResource(R.drawable.r);}
+        if(in==18){imv.setImageResource(R.drawable.s);}if(in==19){imv.setImageResource(R.drawable.t);}if(in==20){imv.setImageResource(R.drawable.u);}
+        if(in==21){imv.setImageResource(R.drawable.v);}if(in==22){imv.setImageResource(R.drawable.w);}if(in==23){imv.setImageResource(R.drawable.x);}
+        if(in==24){imv.setImageResource(R.drawable.y);}if(in==25){imv.setImageResource(R.drawable.z);}
     }
 
     public void drawRegions(){
