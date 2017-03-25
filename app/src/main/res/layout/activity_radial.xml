@@ -4,15 +4,18 @@
     android:id="@+id/activity_radial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@android:color/transparent"
     android:screenOrientation="landscape"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="edu.unc.miller.comp580proto.RadialActivity">
 
-
+    <EditText
+        android:id="@+id/radial_text_field"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/editable_text_box_height" />
     <!--Button width and height is 2/3 that of the ones in the Java file-->
     <Button
         android:id="@+id/selectbutton"

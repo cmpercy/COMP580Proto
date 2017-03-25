@@ -1,5 +1,6 @@
 package edu.unc.miller.comp580proto;
 
+import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -17,6 +19,7 @@ import java.util.Stack;
 
 public class RadialActivity extends AppCompatActivity {
 
+    Activity activity;
     int setter;
     ArrayList<Region> regionList;
     Region centralRegion;
@@ -51,7 +54,6 @@ public class RadialActivity extends AppCompatActivity {
                 float regionx = butt.getX(); float regiony = butt.getY();
                 centralRegion = new Region(regionx,regionx+(float)butt.getWidth(),regiony,regiony+(float)butt.getHeight(),"Select");
                 //drawRegions();    //makes the button regions visible
-                Toast.makeText(this,"Focused", Toast.LENGTH_SHORT).show();
             }
     }
 
@@ -74,6 +76,8 @@ public class RadialActivity extends AppCompatActivity {
                     }
                 }else{
                     if(centralRegion.checkBounds(e.getX(),e.getY())){
+                        //Update the userString
+                        appendUserString(charStack.peek());
                         print("Popped: "+charStack.pop());
                     }
                 }
@@ -85,11 +89,12 @@ public class RadialActivity extends AppCompatActivity {
         return true;
     }
 
-    protected void onResume(){super.onResume();}
+    protected void onResume(){super.onResume(); updateUserString();}
 
     protected void onPause(){super.onPause();}
 
     public void initialize(){
+        updateUserString();
         setter = AToZActivity.indicator;
         //Enter immersive mode
         getWindow().getDecorView().setSystemUiVisibility(
@@ -105,7 +110,11 @@ public class RadialActivity extends AppCompatActivity {
             public void onClick(View v){
                 //Stuff to be executed when any button is clicked
                 Button registeredButton = (Button)findViewById(v.getId());
-                if(registeredButton!=null) print(registeredButton.getText());
+                if(registeredButton!=null){
+                    //Update the userString
+                    appendUserString(registeredButton.getText().toString());
+                    print(registeredButton.getText());
+                }
             }
         };
         displaymetrics = new DisplayMetrics();
@@ -114,7 +123,7 @@ public class RadialActivity extends AppCompatActivity {
         screenwidth = displaymetrics.widthPixels;
 
         rl = (RelativeLayout)findViewById(R.id.activity_radial);
-        int radius = 275;
+        int radius = 325;
         int numbutt = 8;
         int buttonWidth = 140; int buttonHeight = 125;
         double section = 360/numbutt;
@@ -124,7 +133,7 @@ public class RadialActivity extends AppCompatActivity {
         for(int i=0;i<numbutt;i++){
             double degrees = i*section;
             double xpos = radius*Math.cos(Math.toRadians(degrees))+(screenwidth/2)-75;  //50 is the xsize of the circle image (I moved it over some though 1.5*50)
-            double ypos = radius*Math.sin(Math.toRadians(degrees))+(screenheight/2)-50; //50 is the ysize of the circle image
+            double ypos = radius*Math.sin(Math.toRadians(degrees))+(screenheight/2)+10; //50 is the ysize of the circle image
             ImageView iv = new ImageView(this);
             imageResSetter(iv,setter);   //set the image for the circular button
             //Set coordinates of the circle imageview
@@ -138,7 +147,7 @@ public class RadialActivity extends AppCompatActivity {
             butt.setId(i);
             butt.setX((float)xpos-50);
             butt.setY((float)ypos-40);
-            //butt.setAlpha(0.0f);      //makes buttons transparent when uncommented
+            butt.setAlpha(0.0f);      //makes buttons transparent when uncommented
             butt.setWidth(buttonWidth);
             butt.setHeight(buttonHeight);
             buttonTextSetter(butt,setter);   //set the text for the circular button
@@ -194,6 +203,20 @@ public class RadialActivity extends AppCompatActivity {
             butt.setBackgroundColor(Color.YELLOW);
             rl.addView(butt);
 
+        }
+    }
+
+    public void appendUserString(String s){
+        if(Vars.userString==null) Vars.userString = "";
+        Vars.userString = Vars.userString + s;
+        updateUserString();
+    }
+
+    //Set the text of the edit text box
+    public void updateUserString(){
+        if(Vars.userString!=null){
+            EditText editText = (EditText)findViewById(R.id.radial_text_field);
+            if(editText!=null) editText.setText(Vars.userString);
         }
     }
 

@@ -18,12 +18,10 @@
         </activity>
         <activity
             android:name=".RadialActivity"
-            android:label=""
             android:theme="@style/AppTheme.Transparent" >
         </activity>
         <activity
             android:name=".AToZActivity"
-            android:label=""
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
