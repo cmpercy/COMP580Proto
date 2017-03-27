@@ -4,10 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * Created by cmiller on 2/27/17.
- */
-
 public class RadialView extends View {
 
     public RadialView(Context c){super(c);}

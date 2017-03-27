@@ -1,0 +1,11 @@
+Troubleshooting Problems:
+=========================
+1) Sometimes movement gestures aren't being registered from the radial keyboard. 
+On some occasions it works fine until I release it, then it might not work the
+next time.
+	Solution: When the user begins a movement gesture, they must not begin
+that movement on top of any of the radial buttons.  The buttons mask the motion
+event and as such, any methods from the onTouchEvent for the view won't get
+called.  In short, the user must make sure they begin their touch gesture on the 
+view NOT a button (except for the select button, this was disabled for this 
+reason).

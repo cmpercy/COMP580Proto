@@ -25,6 +25,7 @@
         android:background="#FFF"
         android:textColor="#000"
         android:text="Select"
+        android:clickable="false"
         />
 
     <Button

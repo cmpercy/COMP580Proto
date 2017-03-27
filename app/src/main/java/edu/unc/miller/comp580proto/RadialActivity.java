@@ -6,18 +6,20 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class RadialActivity extends AppCompatActivity {
+
+    private final String TAG = "RadialActivity";
 
     Activity activity;
     int setter;
@@ -58,8 +60,6 @@ public class RadialActivity extends AppCompatActivity {
             }
     }
 
-    //Need to check on this.  Sometimes when the app launches, it lags pretty bad.  Sometimes
-    //it works perfectly fine though.  Might need to make a new thread/activity/or view?
     @Override
     public boolean onTouchEvent(MotionEvent e){
         switch(e.getAction()){
@@ -70,21 +70,20 @@ public class RadialActivity extends AppCompatActivity {
                     //Check each region to see if the touch event is in one of the button regions
                     for(int i=0; i<regionList.size();i++){
                         Region tempregion = regionList.get(i);
-                        if(tempregion.checkBounds(e.getX(),e.getY())){
+                        if(tempregion.checkBounds(e.getRawX(),e.getRawY())){
                                     charStack.push(tempregion.getLabel());
-                                    print("Pushed "+tempregion.getLabel());
+                                    Log.i(TAG,"Character pushed");
                         }
                     }
                 }else{
-                    if(centralRegion.checkBounds(e.getX(),e.getY())){
+                    if(centralRegion.checkBounds(e.getRawX(),e.getRawY())){
                         //Update the userString
                         appendUserString(charStack.peek());
-                        print("Popped: "+charStack.pop());
+                        Log.i(TAG,"Character released");
                     }
                 }
                 break;
             default:
-                //Do nothing
                 break;
         }
         return true;
