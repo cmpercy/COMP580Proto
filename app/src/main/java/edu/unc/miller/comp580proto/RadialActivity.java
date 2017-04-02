@@ -124,7 +124,7 @@ public class RadialActivity extends AppCompatActivity {
                     }
                 }
 
-                //Check exterior_region_one; prevent it from clashing with the above method
+                //Check exterior_region_two; prevent it from clashing with the above method
                 if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionOne){
                     Region tempRegion = exteriorRegionArray[2];
                     //If event is in bounds of this region...
