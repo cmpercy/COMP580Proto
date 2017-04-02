@@ -107,4 +107,9 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
         super.onResume();
         updateUserString();
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+    }
 }

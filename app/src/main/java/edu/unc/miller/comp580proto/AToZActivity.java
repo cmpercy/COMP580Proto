@@ -3,12 +3,14 @@ package edu.unc.miller.comp580proto;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
 public class AToZActivity extends AppCompatActivity {
 
     public static int indicator;
+    Region centralRegion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,23 @@ public class AToZActivity extends AppCompatActivity {
         }
     }
 
+    //You'll need to deactivate the alphabet buttons
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent){
+        switch(motionEvent.getAction()){
+            case MotionEvent.ACTION_UP:
+                if(centralRegion.checkBounds(motionEvent.getRawX(),motionEvent.getRawY())){
+                    //Return to main activity
+                    Intent intent = new Intent(this,MainActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
     public void initialize(){
         //Update the text in the edit text box
         updateUserString();
@@ -61,6 +80,8 @@ public class AToZActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        //Make the central region
+        centralRegion = new Region(0.0f,1000.0f,0.0f,1000.0f,"Select");
     }
 
     //Set the text of the edit text box

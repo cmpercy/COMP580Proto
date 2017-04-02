@@ -11,4 +11,8 @@
     <string name="y_to_z_text">Y - Z</string>
     <string name="space_button_text">SPACE</string>
     <string name="backspace_button_text">BACKSPACE</string>
+    <string name="menu_1">A - H</string>
+    <string name="menu_2">I- P</string>
+    <string name="menu_3">Q - X</string>
+    <string name="menu_4">Y - Z</string>
 </resources>

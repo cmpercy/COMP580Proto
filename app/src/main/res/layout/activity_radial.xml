@@ -28,6 +28,42 @@
         android:clickable="false"
         />
 
+        <Button
+            android:id="@+id/exterior_button_0"
+            android:layout_width="@dimen/exterior_buttons_width"
+            android:layout_height="@dimen/exterior_buttons_height"
+            android:layout_marginTop="@dimen/editable_text_box_height"
+            android:text="Function #1"
+            android:textSize="@dimen/exterior_buttons_text_size"
+            android:textColor="#000"
+            android:clickable="false"
+            android:background="#FFF"
+            />
+
+        <Button
+            android:id="@+id/exterior_button_1"
+            android:layout_width="@dimen/exterior_buttons_width"
+            android:layout_height="@dimen/exterior_buttons_height"
+            android:layout_marginTop="@dimen/editable_text_box_height"
+            android:text="Function #2"
+            android:textSize="@dimen/exterior_buttons_text_size"
+            android:textColor="#000"
+            android:layout_alignParentEnd="true"
+            android:clickable="false"
+            android:background="#FFF"
+            />
+
+        <Button
+            android:id="@+id/exterior_button_2"
+            android:layout_width="@dimen/exterior_buttons_width"
+            android:layout_height="@dimen/exterior_buttons_height"
+            android:text="Function #3"
+            android:textSize="@dimen/exterior_buttons_text_size"
+            android:textColor="#000"
+            android:layout_alignParentBottom="true"
+            android:clickable="false"
+            android:background="#FFF"/>
+<!--
     <Button
         android:id="@+id/space_button"
         android:layout_width="@dimen/extra_buttons_width"
@@ -70,4 +106,5 @@
         android:layout_below="@+id/radial_text_field"
         android:layout_alignParentEnd="true"
         android:onClick="backspacePressed"/>
+        -->
 </RelativeLayout>

@@ -1,0 +1,7 @@
+Ideas for COMP580 Project:
+==========================
+1) Grouping the alphabet characters by their use frequency in conversations would
+probably help a lot.  This is intended to give the user letters that they would
+most likely use in accordance with natural speech patterns in English.
+
+2) You should probably be able to jump between radial keyboards from within another keyboard.  Pressing and releasing to navigate through a menu just to press to get to another menu is probably too many actions for simple typing.

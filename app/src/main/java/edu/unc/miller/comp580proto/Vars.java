@@ -6,7 +6,12 @@ public class Vars {
     public static String userString;
     public static final int BUTTON_WIDTH = 140;
     public static final int BUTTON_HEIGHT = 125;
-    public static final int NUMBER_EXTRA_BUTTONS = 4;
+    public static final int RADIAL_RADIUS = 325;
+    public static final float EXTERIOR_BUTTON_WIDTH = 150;
+    public static final float EXTERIOR_BUTTON_HEIGHT = 100;
+    public static final float EDITABLE_TEXT_BOX_HEIGHT = 40;
+    public static final long  TRANSITION_HOLD_TIME = 250;   //in ms
+
 
     public Vars(){}
 }
