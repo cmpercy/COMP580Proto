@@ -23,22 +23,23 @@ import java.util.Stack;
 public class RadialActivity extends AppCompatActivity {
 
     private final String TAG = "RadialActivity";
-
-    Activity activity;
-    int setter;                                     //int value used to determine which characters to draw for the keyboard
     ArrayList<Region> regionList;
+    ArrayList<Button> buttonList;
+    ArrayList<ImageView> imageViewList;
     Region[] exteriorRegionArray = new Region[3];
     Region centralRegion;
     Stack<String> charStack = new Stack<>();
     RelativeLayout rl;
     DisplayMetrics displaymetrics;
-    int screenheight,screenwidth;
-    Calendar calendar;
-    Timestamp tstamp;
-    private String menu;
+    private int setter;                                     //int value used to determine which characters to draw for the keyboard
+    private int screenheight,screenwidth;
+    private Calendar calendar;
+    private Timestamp tstamp;
+    private String menu;                                    //string indicating what state/menu/group the keyboard is in
     private long time0, time1;
-    private boolean startedCheckingTime;
-    private boolean changedActivity;
+    private boolean startedCheckingTime;                    //used for timing checks
+    private boolean changedActivity;                        //indicates if the activity layout has changed recently
+    private boolean canResume = true;                       //indicates if the motionevent in a region can be triggered/resumed
     private boolean checkingExteriorRegionZero, checkingExteriorRegionOne, checkingExteriorRegionTwo;
 
     @Override
@@ -88,7 +89,7 @@ public class RadialActivity extends AppCompatActivity {
                 if(!changedActivity&&!checkingExteriorRegionOne&&!checkingExteriorRegionTwo){
                     Region tempRegion = exteriorRegionArray[0];
                     //If event is in bounds of this region...
-                    if(tempRegion.checkBounds(e.getRawX(),e.getRawY())){
+                    if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                         System.out.println("Running exRegionZero");
                         checkingExteriorRegionZero = true;
                         if(!startedCheckingTime) setTimeZero();
@@ -99,6 +100,9 @@ public class RadialActivity extends AppCompatActivity {
                             exteriorButtonFunctionZero();
                         }
                     }else{
+                        //Reset variables when the user has left one of the exterior button regions
+                        canResume = true;
+                        changedActivity = false;
                         startedCheckingTime = false;
                         checkingExteriorRegionZero = false;
                     }
@@ -108,7 +112,7 @@ public class RadialActivity extends AppCompatActivity {
                 if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionTwo){
                     Region tempRegion = exteriorRegionArray[1];
                     //If event is in bounds of this region...
-                    if(tempRegion.checkBounds(e.getRawX(),e.getRawY())){
+                    if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                         System.out.println("Running exRegionOne");
                         checkingExteriorRegionOne = true;
                         if(!startedCheckingTime) setTimeZero();
@@ -119,6 +123,9 @@ public class RadialActivity extends AppCompatActivity {
                             exteriorButtonFunctionOne();
                         }
                     }else{
+                        //Reset variables when the user has left one of the exterior button regions
+                        canResume = true;
+                        changedActivity = false;
                         startedCheckingTime = false;
                         checkingExteriorRegionOne = false;
                     }
@@ -128,7 +135,7 @@ public class RadialActivity extends AppCompatActivity {
                 if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionOne){
                     Region tempRegion = exteriorRegionArray[2];
                     //If event is in bounds of this region...
-                    if(tempRegion.checkBounds(e.getRawX(),e.getRawY())){
+                    if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                         System.out.println("Running exRegionTwo");
                         checkingExteriorRegionTwo = true;
                         if(!startedCheckingTime) setTimeZero();
@@ -139,6 +146,9 @@ public class RadialActivity extends AppCompatActivity {
                             exteriorButtonFunctionTwo();
                         }
                     }else{
+                        //Reset variables when the user has left one of the exterior button regions
+                        canResume = true;
+                        changedActivity = false;
                         startedCheckingTime = false;
                         checkingExteriorRegionTwo = false;
                     }
@@ -175,21 +185,28 @@ public class RadialActivity extends AppCompatActivity {
         time1 = tstamp.getTime();
     }
 
+    //Handle events triggered by exterior button zero
     public void exteriorButtonFunctionZero(){
-        if(menu.equals("Menu 1")){AToZActivity.indicator=8; this.recreate();}
-        else{AToZActivity.indicator=0; this.recreate();}
+        if(menu.equals("Menu 1")){AToZActivity.indicator=8;}
+        else{AToZActivity.indicator=0;}
+        reinitialize();
     }
 
+    //Handle events triggered by exterior button one
     public void exteriorButtonFunctionOne(){
-        if(menu.equals("Menu 1")||menu.equals("Menu 2")){AToZActivity.indicator=16; this.recreate();}
-        else{AToZActivity.indicator=8; this.recreate();}
+        if(menu.equals("Menu 1")||menu.equals("Menu 2")){AToZActivity.indicator=16;}
+        else{AToZActivity.indicator=8;}
+        reinitialize();
     }
 
+    //Handle events triggered by exterior button two
     public void exteriorButtonFunctionTwo(){
-        if(menu.equals("Menu 4")){AToZActivity.indicator=16; this.recreate();}
-        else{AToZActivity.indicator=24; this.recreate();}
+        if(menu.equals("Menu 4")){AToZActivity.indicator=16;}
+        else{AToZActivity.indicator=24;}
+        reinitialize();
     }
 
+    //Main method to create the radial buttons used for the keyboard layout
     public void makeRadialRegions(){
         rl = (RelativeLayout)findViewById(R.id.activity_radial);
         int numbutt = 8;
@@ -209,8 +226,10 @@ public class RadialActivity extends AppCompatActivity {
                 }
             }
         };
-
+        //Re-initialize the arraylists
         regionList = new ArrayList<>(numbutt);
+        buttonList = new ArrayList<>(numbutt);
+        imageViewList = new ArrayList<>(numbutt);
         //Create a series of "circular" buttons in a circle
         for(int i=0;i<numbutt;i++){
             double degrees = i*section;
@@ -224,6 +243,7 @@ public class RadialActivity extends AppCompatActivity {
             iv.setScaleX(2);
             iv.setScaleY(2);
             rl.addView(iv);
+            imageViewList.add(iv);
             //Set information and coordinates for the buttons
             Button butt = new Button(this);
             butt.setId(i);
@@ -234,6 +254,7 @@ public class RadialActivity extends AppCompatActivity {
             butt.setHeight(buttonHeight);
             buttonTextSetter(butt,setter);   //set the text for the circular button
             butt.setOnClickListener(buttonListener);
+            buttonList.add(butt);
             //Create button regions (used for slide motion detection) and add them to a list
             float regionx = butt.getX(); float regiony = butt.getY();
             String label = butt.getText().toString();
@@ -246,6 +267,7 @@ public class RadialActivity extends AppCompatActivity {
         AToZActivity.indicator = 0;
     }
 
+    //Method to create regions for the exterior buttons
     public void makeExteriorRegions(){
         setExteriorButtonText();
         Region buttonRegion;
@@ -257,6 +279,27 @@ public class RadialActivity extends AppCompatActivity {
         exteriorRegionArray[2] = buttonRegion;
     }
 
+    //Redraws and reinitializes the keyboard layout; gets called from an exterior button function
+    public void reinitialize(){
+        Log.i(TAG,"Reinitializing keyboard");
+        rl = (RelativeLayout)findViewById(R.id.activity_radial);
+        //Remove the buttons and pictures from the view
+        removeButtons();
+        removeImages();
+        //Redraw the views and reset their functions
+        setter = AToZActivity.indicator;
+        setMenuType();
+        makeRadialRegions();
+        //Reset the text for the exterior buttons
+        setExteriorButtonText();
+        //Throw away any character the user might've passed over while swapping keyboards
+        if(!charStack.empty()) charStack.pop();
+        //Reset the triggers to prevent instant keyboard swaps on new keyboard start
+        changedActivity = false;
+        canResume = false;
+    }
+
+    //Setter for exterior button text
     public void setExteriorButtonText(){
         Button button;
         button = (Button)findViewById(R.id.exterior_button_0);
@@ -273,36 +316,83 @@ public class RadialActivity extends AppCompatActivity {
 
     }
 
+    //Remove all dynamically created buttons from view; not the exterior buttons
+    public void removeButtons(){
+        for(int i=0; i<buttonList.size(); i++){
+            rl.removeView(buttonList.get(i));
+        }
+    }
+
+    //Remove all dynamically create imageViews from view
+    public void removeImages(){
+        for(int i=0; i<imageViewList.size(); i++){
+            rl.removeView(imageViewList.get(i));
+        }
+    }
+
     //Pick the text to use for the button
+    //English characters by frequency layout
     public void buttonTextSetter(Button b, int in){
-        if(in==0){b.setText("A");}if(in==1){b.setText("B");}if(in==2){b.setText("C");}
-        if(in==3){b.setText("D");}if(in==4){b.setText("E");}if(in==5){b.setText("F");}
-        if(in==6){b.setText("G");}if(in==7){b.setText("H");}if(in==8){b.setText("I");}
-        if(in==9){b.setText("J");}if(in==10){b.setText("K");}if(in==11){b.setText("L");}
-        if(in==12){b.setText("M");}if(in==13){b.setText("N");}if(in==14){b.setText("O");}
-        if(in==15){b.setText("P");}if(in==16){b.setText("Q");}if(in==17){b.setText("R");}
-        if(in==18){b.setText("S");}if(in==19){b.setText("T");}if(in==20){b.setText("U");}
-        if(in==21){b.setText("V");}if(in==22){b.setText("W");}if(in==23){b.setText("X");}
-        if(in==24){b.setText("Y");}if(in==25){b.setText("Z");}if(in==26){b.setText(".");}
+        if(in==0){b.setText("E");}if(in==1){b.setText("T");}if(in==2){b.setText("A");}
+        if(in==3){b.setText("O");}if(in==4){b.setText("I");}if(in==5){b.setText("N");}
+        if(in==6){b.setText("S");}if(in==7){b.setText("R");}if(in==8){b.setText("H");}
+        if(in==9){b.setText("D");}if(in==10){b.setText("L");}if(in==11){b.setText("U");}
+        if(in==12){b.setText("C");}if(in==13){b.setText("M");}if(in==14){b.setText("F");}
+        if(in==15){b.setText("Y");}if(in==16){b.setText("W");}if(in==17){b.setText("G");}
+        if(in==18){b.setText("P");}if(in==19){b.setText("B");}if(in==20){b.setText("V");}
+        if(in==21){b.setText("K");}if(in==22){b.setText("X");}if(in==23){b.setText("Q");}
+        if(in==24){b.setText("J");}if(in==25){b.setText("Z");}if(in==26){b.setText(".");}
         if(in==27){b.setText(",");}if(in==28){b.setText("!");}if(in==29){b.setText("?");}
         if(in==30){b.setText(";");}if(in==31){b.setText("@");}
     }
 
     //Pick the resource to load into an imageview
     //24point font for the letters
+    //English characters by frequency layout
     public void imageResSetter(ImageView imv, int in){
-        if(in==0){imv.setImageResource(R.drawable.a);}if(in==1){imv.setImageResource(R.drawable.b);}if(in==2){imv.setImageResource(R.drawable.c);}
-        if(in==3){imv.setImageResource(R.drawable.d);}if(in==4){imv.setImageResource(R.drawable.e);}if(in==5){imv.setImageResource(R.drawable.f);}
-        if(in==6){imv.setImageResource(R.drawable.g);}if(in==7){imv.setImageResource(R.drawable.h);}if(in==8){imv.setImageResource(R.drawable.i);}
-        if(in==9){imv.setImageResource(R.drawable.j);}if(in==10){imv.setImageResource(R.drawable.k);}if(in==11){imv.setImageResource(R.drawable.l);}
-        if(in==12){imv.setImageResource(R.drawable.m);}if(in==13){imv.setImageResource(R.drawable.n);}if(in==14){imv.setImageResource(R.drawable.o);}
-        if(in==15){imv.setImageResource(R.drawable.p);}if(in==16){imv.setImageResource(R.drawable.q);}if(in==17){imv.setImageResource(R.drawable.r);}
-        if(in==18){imv.setImageResource(R.drawable.s);}if(in==19){imv.setImageResource(R.drawable.t);}if(in==20){imv.setImageResource(R.drawable.u);}
-        if(in==21){imv.setImageResource(R.drawable.v);}if(in==22){imv.setImageResource(R.drawable.w);}if(in==23){imv.setImageResource(R.drawable.x);}
-        if(in==24){imv.setImageResource(R.drawable.y);}if(in==25){imv.setImageResource(R.drawable.z);}if(in==26){imv.setImageResource(R.drawable.period);}
+        if(in==0){imv.setImageResource(R.drawable.e);}if(in==1){imv.setImageResource(R.drawable.t);}if(in==2){imv.setImageResource(R.drawable.a);}
+        if(in==3){imv.setImageResource(R.drawable.o);}if(in==4){imv.setImageResource(R.drawable.i);}if(in==5){imv.setImageResource(R.drawable.n);}
+        if(in==6){imv.setImageResource(R.drawable.s);}if(in==7){imv.setImageResource(R.drawable.r);}if(in==8){imv.setImageResource(R.drawable.h);}
+        if(in==9){imv.setImageResource(R.drawable.d);}if(in==10){imv.setImageResource(R.drawable.l);}if(in==11){imv.setImageResource(R.drawable.u);}
+        if(in==12){imv.setImageResource(R.drawable.c);}if(in==13){imv.setImageResource(R.drawable.m);}if(in==14){imv.setImageResource(R.drawable.f);}
+        if(in==15){imv.setImageResource(R.drawable.y);}if(in==16){imv.setImageResource(R.drawable.w);}if(in==17){imv.setImageResource(R.drawable.g);}
+        if(in==18){imv.setImageResource(R.drawable.p);}if(in==19){imv.setImageResource(R.drawable.b);}if(in==20){imv.setImageResource(R.drawable.v);}
+        if(in==21){imv.setImageResource(R.drawable.k);}if(in==22){imv.setImageResource(R.drawable.x);}if(in==23){imv.setImageResource(R.drawable.q);}
+        if(in==24){imv.setImageResource(R.drawable.j);}if(in==25){imv.setImageResource(R.drawable.z);}if(in==26){imv.setImageResource(R.drawable.period);}
         if(in==27){imv.setImageResource(R.drawable.comma);}if(in==28){imv.setImageResource(R.drawable.exclamation);}if(in==29){imv.setImageResource(R.drawable.question);}
         if(in==30){imv.setImageResource(R.drawable.semicolon);}if(in==31){imv.setImageResource(R.drawable.at);}
     }
+
+//    //Pick the text to use for the button
+//    public void buttonTextSetter(Button b, int in){
+//        if(in==0){b.setText("A");}if(in==1){b.setText("B");}if(in==2){b.setText("C");}
+//        if(in==3){b.setText("D");}if(in==4){b.setText("E");}if(in==5){b.setText("F");}
+//        if(in==6){b.setText("G");}if(in==7){b.setText("H");}if(in==8){b.setText("I");}
+//        if(in==9){b.setText("J");}if(in==10){b.setText("K");}if(in==11){b.setText("L");}
+//        if(in==12){b.setText("M");}if(in==13){b.setText("N");}if(in==14){b.setText("O");}
+//        if(in==15){b.setText("P");}if(in==16){b.setText("Q");}if(in==17){b.setText("R");}
+//        if(in==18){b.setText("S");}if(in==19){b.setText("T");}if(in==20){b.setText("U");}
+//        if(in==21){b.setText("V");}if(in==22){b.setText("W");}if(in==23){b.setText("X");}
+//        if(in==24){b.setText("Y");}if(in==25){b.setText("Z");}if(in==26){b.setText(".");}
+//        if(in==27){b.setText(",");}if(in==28){b.setText("!");}if(in==29){b.setText("?");}
+//        if(in==30){b.setText(";");}if(in==31){b.setText("@");}
+//    }
+//
+//    //Pick the resource to load into an imageview
+//    //24point font for the letters
+//    public void imageResSetter(ImageView imv, int in){
+//        if(in==0){imv.setImageResource(R.drawable.a);}if(in==1){imv.setImageResource(R.drawable.b);}if(in==2){imv.setImageResource(R.drawable.c);}
+//        if(in==3){imv.setImageResource(R.drawable.d);}if(in==4){imv.setImageResource(R.drawable.e);}if(in==5){imv.setImageResource(R.drawable.f);}
+//        if(in==6){imv.setImageResource(R.drawable.g);}if(in==7){imv.setImageResource(R.drawable.h);}if(in==8){imv.setImageResource(R.drawable.i);}
+//        if(in==9){imv.setImageResource(R.drawable.j);}if(in==10){imv.setImageResource(R.drawable.k);}if(in==11){imv.setImageResource(R.drawable.l);}
+//        if(in==12){imv.setImageResource(R.drawable.m);}if(in==13){imv.setImageResource(R.drawable.n);}if(in==14){imv.setImageResource(R.drawable.o);}
+//        if(in==15){imv.setImageResource(R.drawable.p);}if(in==16){imv.setImageResource(R.drawable.q);}if(in==17){imv.setImageResource(R.drawable.r);}
+//        if(in==18){imv.setImageResource(R.drawable.s);}if(in==19){imv.setImageResource(R.drawable.t);}if(in==20){imv.setImageResource(R.drawable.u);}
+//        if(in==21){imv.setImageResource(R.drawable.v);}if(in==22){imv.setImageResource(R.drawable.w);}if(in==23){imv.setImageResource(R.drawable.x);}
+//        if(in==24){imv.setImageResource(R.drawable.y);}if(in==25){imv.setImageResource(R.drawable.z);}if(in==26){imv.setImageResource(R.drawable.period);}
+//        if(in==27){imv.setImageResource(R.drawable.comma);}if(in==28){imv.setImageResource(R.drawable.exclamation);}if(in==29){imv.setImageResource(R.drawable.question);}
+//        if(in==30){imv.setImageResource(R.drawable.semicolon);}if(in==31){imv.setImageResource(R.drawable.at);}
+//    }
 
     public void backspacePressed(View view){
         deleteLastCharUserString();

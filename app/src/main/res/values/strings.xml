@@ -5,14 +5,30 @@
     <string name="a_to_z_text">A - Z</string>
     <string name="edit_text_text">Edit Text</string>
     <string name="most_popular_words_text">Most Popular Words</string>
+    <!-- Used for standard keyboard layout -->
+    <!--
     <string name="a_to_h_text">A - H</string>
     <string name="i_to_p_text">I - P</string>
     <string name="q_to_x_text">Q - X</string>
     <string name="y_to_z_text">Y - Z</string>
+    -->
+    <!-- Used for letter frequency keyboard layout -->
+    <string name="a_to_h_text">Group 1: E T A O I N S R</string>
+    <string name="i_to_p_text">Group 2: H D L U C M F Y</string>
+    <string name="q_to_x_text">Group 3: W G P B V K X Q</string>
+    <string name="y_to_z_text">Group 4: J Z . , ! ? ; @</string>
     <string name="space_button_text">SPACE</string>
     <string name="backspace_button_text">BACKSPACE</string>
+    <!-- Used for standard keyboard layout -->
+    <!--
     <string name="menu_1">A - H</string>
     <string name="menu_2">I- P</string>
     <string name="menu_3">Q - X</string>
     <string name="menu_4">Y - Z</string>
+    -->
+    <!-- Used for letter frequency keyboard layout -->
+    <string name="menu_1">Group 1</string>
+    <string name="menu_2">Group 2</string>
+    <string name="menu_3">Group 3</string>
+    <string name="menu_4">Group 4</string>
 </resources>
