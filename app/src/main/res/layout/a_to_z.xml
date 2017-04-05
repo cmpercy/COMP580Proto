@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,74 +14,77 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/editable_text_box_height"
         android:focusable="false"/>
-    <LinearLayout
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/a_to_h_button"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="aToZButtonClicked"
-            android:src="@drawable/a_h"
-            android:contentDescription="@string/menu_AH"/>
 
-        <ImageView
-            android:id="@+id/i_to_p_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="aToZButtonClicked"
-            android:src="@drawable/i_p"
-            android:contentDescription="@string/menu_IP"/>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/back" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/a_to_h_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="218dp"
+        android:layout_marginTop="87dp"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/a_h"
+        android:layout_below="@+id/a_to_z_text_field"
+        android:layout_alignEnd="@+id/back_button" />
 
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:contentDescription="@string/menu_back"
-            android:onClick="aToZButtonClicked"
-            android:src="@drawable/back" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/i_to_p_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/i_p"
+        android:layout_alignTop="@+id/a_to_h_button"
+        android:layout_alignStart="@+id/back_button" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/q_to_x_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/q_x"
+        android:layout_below="@+id/a_to_h_button"
+        android:layout_alignStart="@+id/a_to_h_button" />
 
-        <ImageView
-            android:id="@+id/q_to_x_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="aToZButtonClicked"
-            android:src="@drawable/q_x"
-            android:contentDescription="@string/menu_QX"/>
+    <ImageView
+        android:id="@+id/y_to_z_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/y_z"
+        android:layout_alignBottom="@+id/space_button"
+        android:layout_alignStart="@+id/i_to_p_button" />
 
-        <ImageView
-            android:id="@+id/y_to_z_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:onClick="aToZButtonClicked"
-            android:src="@drawable/y_z"
-            android:contentDescription="@string/menu_YZ"/>
-    </LinearLayout>
-</LinearLayout>
+    <ImageView
+        android:id="@+id/enter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/enter"
+        android:layout_alignTop="@+id/a_to_h_button"
+        android:layout_alignEnd="@+id/back_button" />
+
+    <ImageView
+        android:id="@+id/space_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/space"
+        android:layout_alignBottom="@+id/q_to_x_button"
+        android:layout_alignEnd="@+id/back_button" />
+
+</RelativeLayout>
