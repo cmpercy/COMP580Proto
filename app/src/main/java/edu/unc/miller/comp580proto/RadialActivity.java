@@ -303,7 +303,7 @@ public class RadialActivity extends AppCompatActivity {
     public void setExteriorButtonText(){
         Button button;
         button = (Button)findViewById(R.id.exterior_button_0);
-        if(menu.equals("Menu 1")) {button.setText(R.string.menu_2);}
+        if(menu.equals("Menu 1")) {button.setText(R.string.menu_1);}
         else{button.setText(R.string.menu_1);}
 
         button = (Button)findViewById(R.id.exterior_button_1);
@@ -420,12 +420,12 @@ public class RadialActivity extends AppCompatActivity {
     //Delete the last character of the userString
     public void deleteLastCharUserString(){
         String rephrase;
-        if(Vars.userString!=null && Vars.userString.length()>=1){
+        if(Vars.userString != null && Vars.userString.length() >= 1){
             rephrase = Vars.userString.substring(0,Vars.userString.length()-1);
             Vars.userString = rephrase;
         }
         EditText editText = (EditText)findViewById(R.id.radial_text_field);
-        if(editText!=null) editText.setText(Vars.userString);
+        if(editText != null) editText.setText(Vars.userString);
         print("Deleted last character");
     }
 

@@ -11,7 +11,8 @@
     <EditText
         android:id="@+id/main_text_field"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/editable_text_box_height" />
+        android:layout_height="@dimen/editable_text_box_height"
+        android:focusable="false"/>
     <LinearLayout
         android:layout_height="0dp"
         android:layout_width="match_parent"

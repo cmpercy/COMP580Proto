@@ -46,6 +46,10 @@ public class AToZActivity extends AppCompatActivity {
                 hideUserString();
                 startActivity(intent);
                 break;
+            case R.id.back_button:
+                intent = new Intent(this,MainActivity.class);
+                startActivity(intent); //go back to main page
+                break;
             default:
                 //Do nothing
                 break;
