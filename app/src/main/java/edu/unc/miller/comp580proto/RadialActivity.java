@@ -158,6 +158,8 @@ public class RadialActivity extends AppCompatActivity {
             case MotionEvent.ACTION_UP:
                 //If you lift up on the central select button, return to the previous AtoZ screen
                 if(centralRegion.checkBounds(e.getRawX(),e.getRawY())){
+                    appendUserString(" ");
+                    print(" ");
                     Intent intent = new Intent(this, AToZActivity.class);
                     startActivity(intent);
                 }
