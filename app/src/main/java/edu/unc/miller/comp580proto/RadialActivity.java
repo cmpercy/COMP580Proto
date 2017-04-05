@@ -493,6 +493,13 @@ public class RadialActivity extends AppCompatActivity {
         }
     }
 
+    //force back button to return to home screen
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public static <AnyType> void print(AnyType s){
         System.out.println(s);
     }

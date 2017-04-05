@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
             tts.setLanguage(Locale.US); //set language to US English
         }
     }
+
     public void initialize(){
         updateUserString();
         //Enter immersive mode on app start
