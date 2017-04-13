@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,49 +12,85 @@
     <EditText
         android:id="@+id/a_to_z_text_field"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/editable_text_box_height" />
-    <LinearLayout
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/a_to_h_button"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/a_to_h_text"
-            android:onClick="aToZButtonClicked"/>
-        <Button
-            android:id="@+id/i_to_p_button"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/i_to_p_text"
-            android:onClick="aToZButtonClicked"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/q_to_x_button"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/q_to_x_text"
-            android:onClick="aToZButtonClicked"/>
-        <Button
-            android:id="@+id/y_to_z_button"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:textSize="@dimen/main_activity_button_text_size"
-            android:text="@string/y_to_z_text"
-            android:onClick="aToZButtonClicked"/>
-    </LinearLayout>
-</LinearLayout>
+        android:layout_height="@dimen/editable_text_box_height"
+        android:focusable="false"/>
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/back"
+        android:contentDescription="@string/menu_back"/>
+
+    <ImageView
+        android:id="@+id/a_to_h_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/a_h"
+        android:contentDescription="@string/menu_AH"
+        android:layout_alignTop="@+id/enter_button"
+        android:layout_toStartOf="@+id/space_button" />
+
+    <ImageView
+        android:id="@+id/i_to_p_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/i_p"
+        android:contentDescription="@string/menu_IP"
+        android:layout_alignTop="@+id/enter_button"
+        android:layout_toEndOf="@+id/enter_button" />
+
+    <ImageView
+        android:id="@+id/q_to_x_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/q_x"
+        android:contentDescription="@string/menu_QX"
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/a_to_h_button"
+        android:layout_toStartOf="@+id/enter_button" />
+
+    <ImageView
+        android:id="@+id/y_to_z_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/y_z"
+        android:contentDescription="@string/menu_YZ"
+        android:layout_alignBottom="@+id/space_button"
+        android:layout_alignStart="@+id/i_to_p_button"
+        android:layout_marginStart="23dp" />
+
+    <ImageView
+        android:id="@+id/enter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/enter"
+        android:contentDescription="@string/menu_enter"
+        android:layout_above="@+id/back_button"
+        android:layout_alignEnd="@+id/back_button"
+        android:layout_marginBottom="23dp" />
+
+    <ImageView
+        android:id="@+id/space_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/space"
+        android:contentDescription="@string/menu_space"
+        android:layout_alignBottom="@+id/q_to_x_button"
+        android:layout_alignEnd="@+id/back_button" />
+
+</RelativeLayout>

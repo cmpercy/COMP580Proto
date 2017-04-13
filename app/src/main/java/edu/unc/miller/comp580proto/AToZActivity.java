@@ -1,22 +1,43 @@
 package edu.unc.miller.comp580proto;
 
 import android.content.Intent;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
-public class AToZActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
 
     public static int indicator;
     Region centralRegion;
+    TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_to_z);
+        Intent checkTTS = new Intent();
+        checkTTS.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+        startActivityForResult(checkTTS, 0); //check if tts is available
         initialize();
+    }
+
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
+                tts = new TextToSpeech(this, this); //initialize tts if available
+            }
+        }
+    }
+
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(Locale.US); //set language to US English
+        }
     }
 
     public void aToZButtonClicked(View view){
@@ -45,6 +66,13 @@ public class AToZActivity extends AppCompatActivity {
                 indicator = 24; //24 -> y-z triggered
                 hideUserString();
                 startActivity(intent);
+                break;
+            case R.id.back_button:
+                intent = new Intent(this,MainActivity.class);
+                startActivity(intent); //go back to main page
+                break;
+            case R.id.enter_button:
+                stringToSpeech();
                 break;
             default:
                 //Do nothing
@@ -118,4 +146,18 @@ public class AToZActivity extends AppCompatActivity {
         updateUserString();
     }
 
+    //force back button to return to home screen
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    //call to push Vars.userString to be spoken
+    public void stringToSpeech() {
+        tts.speak(Vars.userString, TextToSpeech.QUEUE_ADD, null);
+        Vars.userString = ""; //reset userString after spoken
+        EditText text = (EditText) findViewById(R.id.a_to_z_text_field);
+        if (text.getText() != null) text.getText().clear(); //clear text field after spoken
+    }
 }
