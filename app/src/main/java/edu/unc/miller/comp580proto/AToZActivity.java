@@ -46,33 +46,32 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void aToZButtonClicked(View view){
         Intent intent;
         switch(view.getId()){
-            case R.id.a_to_h_button:
+            case R.id.zone1_button:
                 intent = new Intent(this,RadialActivity.class);
                 indicator = 0;  //0 -> a-h triggered
                 hideUserString();
                 startActivity(intent);
                 break;
-            case R.id.i_to_p_button:
+            case R.id.zone2_button:
                 intent = new Intent(this,RadialActivity.class);
                 indicator = 8;  //8 -> i-p triggered
                 hideUserString();
                 startActivity(intent);
                 break;
-            case R.id.q_to_x_button:
+            case R.id.zone3_button:
                 intent = new Intent(this,RadialActivity.class);
                 indicator = 16; //16 -> q-x triggered
                 hideUserString();
                 startActivity(intent);
                 break;
-            case R.id.y_to_z_button:
+            case R.id.zone4_button:
                 intent = new Intent(this,RadialActivity.class);
                 indicator = 24; //24 -> y-z triggered
                 hideUserString();
                 startActivity(intent);
                 break;
-            case R.id.back_button:
-                intent = new Intent(this,MainActivity.class);
-                startActivity(intent); //go back to main page
+            case R.id.numbers_button:
+                //need to implement
                 break;
             case R.id.enter_button:
                 stringToSpeech();

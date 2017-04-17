@@ -16,60 +16,60 @@
         android:focusable="false"/>
 
     <ImageView
-        android:id="@+id/back_button"
+        android:id="@+id/numbers_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:clickable="true"
         android:onClick="aToZButtonClicked"
-        app:srcCompat="@drawable/back"
-        android:contentDescription="@string/menu_back"/>
+        app:srcCompat="@drawable/zone5"
+        android:contentDescription="@string/menu_numbers"/>
 
     <ImageView
-        android:id="@+id/a_to_h_button"
+        android:id="@+id/zone1_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="aToZButtonClicked"
-        app:srcCompat="@drawable/a_h"
+        app:srcCompat="@drawable/zone1"
         android:contentDescription="@string/menu_AH"
         android:layout_alignTop="@+id/enter_button"
         android:layout_toStartOf="@+id/space_button" />
 
     <ImageView
-        android:id="@+id/i_to_p_button"
+        android:id="@+id/zone2_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="aToZButtonClicked"
-        app:srcCompat="@drawable/i_p"
+        app:srcCompat="@drawable/zone2"
         android:contentDescription="@string/menu_IP"
         android:layout_alignTop="@+id/enter_button"
         android:layout_toEndOf="@+id/enter_button" />
 
     <ImageView
-        android:id="@+id/q_to_x_button"
+        android:id="@+id/zone3_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="aToZButtonClicked"
-        app:srcCompat="@drawable/q_x"
+        app:srcCompat="@drawable/zone3"
         android:contentDescription="@string/menu_QX"
         android:layout_marginTop="67dp"
-        android:layout_below="@+id/a_to_h_button"
+        android:layout_below="@+id/zone1_button"
         android:layout_toStartOf="@+id/enter_button" />
 
     <ImageView
-        android:id="@+id/y_to_z_button"
+        android:id="@+id/zone4_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="aToZButtonClicked"
-        app:srcCompat="@drawable/y_z"
+        app:srcCompat="@drawable/zone4"
         android:contentDescription="@string/menu_YZ"
         android:layout_alignBottom="@+id/space_button"
-        android:layout_alignStart="@+id/i_to_p_button"
+        android:layout_alignStart="@+id/zone2_button"
         android:layout_marginStart="23dp" />
 
     <ImageView
@@ -80,8 +80,8 @@
         android:onClick="aToZButtonClicked"
         app:srcCompat="@drawable/enter"
         android:contentDescription="@string/menu_enter"
-        android:layout_above="@+id/back_button"
-        android:layout_alignEnd="@+id/back_button"
+        android:layout_above="@+id/numbers_button"
+        android:layout_alignEnd="@+id/numbers_button"
         android:layout_marginBottom="23dp" />
 
     <ImageView
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/space"
         android:contentDescription="@string/menu_space"
-        android:layout_alignBottom="@+id/q_to_x_button"
-        android:layout_alignEnd="@+id/back_button" />
+        android:layout_alignBottom="@+id/zone3_button"
+        android:layout_alignEnd="@+id/numbers_button" />
 
 </RelativeLayout>
