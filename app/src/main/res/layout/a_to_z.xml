@@ -33,7 +33,7 @@
         android:clickable="true"
         android:onClick="aToZButtonClicked"
         app:srcCompat="@drawable/zone1"
-        android:contentDescription="@string/menu_AH"
+        android:contentDescription="@string/zone1_text"
         android:layout_alignTop="@+id/enter_button"
         android:layout_toStartOf="@+id/space_button" />
 
@@ -44,7 +44,7 @@
         android:clickable="true"
         android:onClick="aToZButtonClicked"
         app:srcCompat="@drawable/zone2"
-        android:contentDescription="@string/menu_IP"
+        android:contentDescription="@string/zone2_text"
         android:layout_alignTop="@+id/enter_button"
         android:layout_toEndOf="@+id/enter_button" />
 
@@ -55,7 +55,7 @@
         android:clickable="true"
         android:onClick="aToZButtonClicked"
         app:srcCompat="@drawable/zone3"
-        android:contentDescription="@string/menu_QX"
+        android:contentDescription="@string/zone3_text"
         android:layout_marginTop="67dp"
         android:layout_below="@+id/zone1_button"
         android:layout_toStartOf="@+id/enter_button" />
@@ -67,7 +67,7 @@
         android:clickable="true"
         android:onClick="aToZButtonClicked"
         app:srcCompat="@drawable/zone4"
-        android:contentDescription="@string/menu_YZ"
+        android:contentDescription="@string/zone4_text"
         android:layout_alignBottom="@+id/space_button"
         android:layout_alignStart="@+id/zone2_button"
         android:layout_marginStart="23dp" />
