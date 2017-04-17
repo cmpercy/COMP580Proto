@@ -5,26 +5,16 @@
     <string name="a_to_z_text">A - Z</string>
     <string name="edit_text_text">Edit Text</string>
     <string name="most_popular_words_text">Most Popular Words</string>
-    <!-- Used for standard keyboard layout -->
-    <!--
-    <string name="a_to_h_text">A - H</string>
-    <string name="i_to_p_text">I - P</string>
-    <string name="q_to_x_text">Q - X</string>
-    <string name="y_to_z_text">Y - Z</string>
-    -->
-    <!-- Used for letter frequency keyboard layout -->
-    <string name="a_to_h_text">Group 1: E T A O I N S R</string>
-    <string name="i_to_p_text">Group 2: H D L U C M F Y</string>
-    <string name="q_to_x_text">Group 3: W G P B V K X Q</string>
-    <string name="y_to_z_text">Group 4: J Z . , ! ? ; @</string>
-    <!-- Used for standard keyboard layout -->
 
-    <string name="menu_AH">A to H</string>
-    <string name="menu_IP">I to P</string>
-    <string name="menu_QX">Q to X</string>
-    <string name="menu_YZ">Y to Z</string>
+    <!-- Used for letter frequency keyboard layout -->
+    <string name="zone1_text">Group 1: E T A O I N S R</string>
+    <string name="zone2_text">Group 2: H D L U C M F Y</string>
+    <string name="zone3_text">Group 3: W G P B V K X Q</string>
+    <string name="zone4_text">Group 4: J Z . , ! ? ; @</string>
+
+    <!-- Used for standard keyboard layout -->
     <string name="menu_enter">Enter</string>
-    <string name="menu_back">Back</string>
+    <string name="menu_numbers">Numbers</string>
     <string name="menu_space">Space</string>
     <string name="menu_backspace">Backspace</string>
 
