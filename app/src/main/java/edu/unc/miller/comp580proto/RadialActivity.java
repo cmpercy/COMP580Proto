@@ -371,15 +371,15 @@ public class RadialActivity extends AppCompatActivity {
     //Pick the text to use for the button
     //English characters by frequency layout
     public void buttonTextSetter(Button b, int in){
-        if(in==0){b.setText("E");}if(in==1){b.setText("T");}if(in==2){b.setText("A");}
-        if(in==3){b.setText("O");}if(in==4){b.setText("I");}if(in==5){b.setText("N");}
-        if(in==6){b.setText("S");}if(in==7){b.setText("R");}if(in==8){b.setText("H");}
-        if(in==9){b.setText("D");}if(in==10){b.setText("L");}if(in==11){b.setText("U");}
-        if(in==12){b.setText("C");}if(in==13){b.setText("M");}if(in==14){b.setText("F");}
-        if(in==15){b.setText("Y");}if(in==16){b.setText("W");}if(in==17){b.setText("G");}
-        if(in==18){b.setText("P");}if(in==19){b.setText("B");}if(in==20){b.setText("V");}
-        if(in==21){b.setText("K");}if(in==22){b.setText("X");}if(in==23){b.setText("Q");}
-        if(in==24){b.setText("J");}if(in==25){b.setText("Z");}if(in==26){b.setText(".");}
+        if(in==0){b.setText("e");}if(in==1){b.setText("i");}if(in==2){b.setText("a");}
+        if(in==3){b.setText("o");}if(in==4){b.setText("i");}if(in==5){b.setText("n");}
+        if(in==6){b.setText("s");}if(in==7){b.setText("r");}if(in==8){b.setText("h");}
+        if(in==9){b.setText("d");}if(in==10){b.setText("l");}if(in==11){b.setText("u");}
+        if(in==12){b.setText("c");}if(in==13){b.setText("m");}if(in==14){b.setText("f");}
+        if(in==15){b.setText("y");}if(in==16){b.setText("w");}if(in==17){b.setText("g");}
+        if(in==18){b.setText("p");}if(in==19){b.setText("b");}if(in==20){b.setText("v");}
+        if(in==21){b.setText("k");}if(in==22){b.setText("x");}if(in==23){b.setText("q");}
+        if(in==24){b.setText("j");}if(in==25){b.setText("z");}if(in==26){b.setText(".");}
         if(in==27){b.setText(",");}if(in==28){b.setText("!");}if(in==29){b.setText("?");}
         if(in==30){b.setText(";");}if(in==31){b.setText("@");}if(in==32){b.setText("0");}
         if(in==33){b.setText("1");}if(in==34){b.setText("2");}if(in==35){b.setText("3");}

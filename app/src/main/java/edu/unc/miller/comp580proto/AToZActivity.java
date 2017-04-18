@@ -271,47 +271,47 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         }
     }
 
-//    public void aToZButtonClicked(View view){
-//        Intent intent;
-//        switch(view.getId()){
-//            case R.id.zone1_button:
-//                intent = new Intent(this,RadialActivity.class);
-//                indicator = 0;  //0 -> a-h triggered
-//                hideUserString();
-//                startActivity(intent);
-//                break;
-//            case R.id.zone2_button:
-//                intent = new Intent(this,RadialActivity.class);
-//                indicator = 8;  //8 -> i-p triggered
-//                hideUserString();
-//                startActivity(intent);
-//                break;
-//            case R.id.zone3_button:
-//                intent = new Intent(this,RadialActivity.class);
-//                indicator = 16; //16 -> q-x triggered
-//                hideUserString();
-//                startActivity(intent);
-//                break;
-//            case R.id.zone4_button:
-//                intent = new Intent(this,RadialActivity.class);
-//                indicator = 24; //24 -> y-z triggered
-//                hideUserString();
-//                startActivity(intent);
-//                break;
-//            case R.id.numbers_button:
-//                intent = new Intent(this,RadialActivity.class);
-//                indicator = 32;
-//                hideUserString();
-//                startActivity(intent);
-//                break;
-//            case R.id.enter_button:
-//                stringToSpeech();
-//                break;
-//            default:
-//                //Do nothing
-//                break;
-//        }
-//    }
+    public void aToZButtonClicked(View view){
+        Intent intent;
+        switch(view.getId()){
+            case R.id.zone1_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 0;  //0 -> a-h triggered
+                hideUserString();
+                startActivity(intent);
+                break;
+            case R.id.zone2_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 8;  //8 -> i-p triggered
+                hideUserString();
+                startActivity(intent);
+                break;
+            case R.id.zone3_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 16; //16 -> q-x triggered
+                hideUserString();
+                startActivity(intent);
+                break;
+            case R.id.zone4_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 24; //24 -> y-z triggered
+                hideUserString();
+                startActivity(intent);
+                break;
+            case R.id.numbers_button:
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 32;
+                hideUserString();
+                startActivity(intent);
+                break;
+            case R.id.enter_button:
+                stringToSpeech();
+                break;
+            default:
+                //Do nothing
+                break;
+        }
+    }
 
 //    //You'll need to deactivate the alphabet buttons
 //    @Override
