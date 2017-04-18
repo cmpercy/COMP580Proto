@@ -24,5 +24,6 @@
     <string name="menu_2">Menu 2</string>
     <string name="menu_3">Menu 3</string>
     <string name="menu_4">Menu 4</string>
+    <string name="number_menu">Number Menu</string>
 
 </resources>

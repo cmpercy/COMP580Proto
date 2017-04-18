@@ -26,7 +26,7 @@ public class RadialActivity extends AppCompatActivity {
     ArrayList<Region> regionList;
     ArrayList<Button> buttonList;
     ArrayList<ImageView> imageViewList;
-    Region[] exteriorRegionArray = new Region[3];
+    Region[] exteriorRegionArray = new Region[4];
     Region centralRegion;
     Stack<String> charStack = new Stack<>();
     RelativeLayout rl;
@@ -40,7 +40,7 @@ public class RadialActivity extends AppCompatActivity {
     private boolean startedCheckingTime;                    //used for timing checks
     private boolean changedActivity;                        //indicates if the activity layout has changed recently
     private boolean canResume = true;                       //indicates if the motionevent in a region can be triggered/resumed
-    private boolean checkingExteriorRegionZero, checkingExteriorRegionOne, checkingExteriorRegionTwo;
+    private boolean checkingExteriorRegionZero, checkingExteriorRegionOne, checkingExteriorRegionTwo, checkingExteriorRegionThree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +86,7 @@ public class RadialActivity extends AppCompatActivity {
                 }
                 //---ROUTINES FOR EXTERIOR BUTTONS BELOW---
                 //Check exterior_region_zero for possible keyboard menu transition
-                if(!changedActivity&&!checkingExteriorRegionOne&&!checkingExteriorRegionTwo){
+                if(!changedActivity&&!checkingExteriorRegionOne&&!checkingExteriorRegionTwo&&!checkingExteriorRegionThree){
                     Region tempRegion = exteriorRegionArray[0];
                     //If event is in bounds of this region...
                     if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -109,7 +109,7 @@ public class RadialActivity extends AppCompatActivity {
                 }
 
                 //Check exterior_region_one; prevent it from clashing with the above method
-                if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionTwo){
+                if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionTwo&&!checkingExteriorRegionThree){
                     Region tempRegion = exteriorRegionArray[1];
                     //If event is in bounds of this region...
                     if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -132,7 +132,7 @@ public class RadialActivity extends AppCompatActivity {
                 }
 
                 //Check exterior_region_two; prevent it from clashing with the above method
-                if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionOne){
+                if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionOne&&!checkingExteriorRegionThree){
                     Region tempRegion = exteriorRegionArray[2];
                     //If event is in bounds of this region...
                     if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -153,6 +153,30 @@ public class RadialActivity extends AppCompatActivity {
                         checkingExteriorRegionTwo = false;
                     }
                 }
+
+                //Check exterior_region_three; prevent it from clashing with the above method
+                if(!changedActivity&&!checkingExteriorRegionZero&&!checkingExteriorRegionOne&&!checkingExteriorRegionTwo){
+                    Region tempRegion = exteriorRegionArray[3];
+                    //If event is in bounds of this region...
+                    if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
+                        System.out.println("Running exRegionThree");
+                        checkingExteriorRegionThree = true;
+                        if(!startedCheckingTime) setTimeZero();
+                        if(startedCheckingTime) setTimeOne();
+                        //If the user has been in the region long enough, swap keyboard menus
+                        if(Math.abs(time0-time1)>Vars.TRANSITION_HOLD_TIME){
+                            changedActivity = true;
+                            exteriorButtonFunctionThree();
+                        }
+                    }else{
+                        //Reset variables when the user has left one of the exterior button regions
+                        canResume = true;
+                        changedActivity = false;
+                        startedCheckingTime = false;
+                        checkingExteriorRegionThree = false;
+                    }
+                }
+
                 break;
             //Handle up motion event on the screen
             case MotionEvent.ACTION_UP:
@@ -208,10 +232,17 @@ public class RadialActivity extends AppCompatActivity {
         reinitialize();
     }
 
+    //Handle events triggered by exterior button three, always brings up number menu
+    public void exteriorButtonFunctionThree(){
+        AToZActivity.indicator = 32;
+        reinitialize();
+    }
+
     //Main method to create the radial buttons used for the keyboard layout
     public void makeRadialRegions(){
         rl = (RelativeLayout)findViewById(R.id.activity_radial);
         int numbutt = 8;
+        if(menu.equals("Number Menu")) numbutt = 10;        //number menu requires 10 buttons
         int buttonWidth = Vars.BUTTON_WIDTH; int buttonHeight = Vars.BUTTON_HEIGHT;
         double section = 360/numbutt;
 
@@ -273,12 +304,14 @@ public class RadialActivity extends AppCompatActivity {
     public void makeExteriorRegions(){
         setExteriorButtonText();
         Region buttonRegion;
-        buttonRegion = new Region(0.0f,Vars.EXTERIOR_BUTTON_WIDTH,Vars.EDITABLE_TEXT_BOX_HEIGHT,Vars.EXTERIOR_BUTTON_HEIGHT,"Exterior Button 1");
+        buttonRegion = new Region(0.0f,Vars.EXTERIOR_BUTTON_WIDTH,Vars.EDITABLE_TEXT_BOX_HEIGHT,Vars.EXTERIOR_BUTTON_HEIGHT,"Exterior Button 0");
         exteriorRegionArray[0] = buttonRegion;
-        buttonRegion = new Region(screenwidth-Vars.EXTERIOR_BUTTON_WIDTH,screenwidth,Vars.EDITABLE_TEXT_BOX_HEIGHT,Vars.EXTERIOR_BUTTON_HEIGHT,"Exterior Button 3");
+        buttonRegion = new Region(screenwidth-Vars.EXTERIOR_BUTTON_WIDTH,screenwidth,Vars.EDITABLE_TEXT_BOX_HEIGHT,Vars.EXTERIOR_BUTTON_HEIGHT,"Exterior Button 1");
         exteriorRegionArray[1] = buttonRegion;
-        buttonRegion = new Region(0.0f,Vars.EXTERIOR_BUTTON_WIDTH,screenheight-Vars.EXTERIOR_BUTTON_HEIGHT,screenheight,"Exterior Button 3");
+        buttonRegion = new Region(0.0f,Vars.EXTERIOR_BUTTON_WIDTH,screenheight-Vars.EXTERIOR_BUTTON_HEIGHT,screenheight,"Exterior Button 2");
         exteriorRegionArray[2] = buttonRegion;
+        buttonRegion = new Region(screenwidth-Vars.EXTERIOR_BUTTON_WIDTH,screenwidth,screenheight-Vars.EXTERIOR_BUTTON_HEIGHT,screenheight,"Exterior Button 3");
+        exteriorRegionArray[3] = buttonRegion;
     }
 
     //Redraws and reinitializes the keyboard layout; gets called from an exterior button function
@@ -316,6 +349,9 @@ public class RadialActivity extends AppCompatActivity {
         if(menu.equals("Menu 4")){button.setText(R.string.menu_3);}
         else{button.setText(R.string.menu_4);}
 
+        button = (Button)findViewById(R.id.exterior_button_3);
+        button.setText(R.string.number_menu);
+
     }
 
     //Remove all dynamically created buttons from view; not the exterior buttons
@@ -345,7 +381,10 @@ public class RadialActivity extends AppCompatActivity {
         if(in==21){b.setText("K");}if(in==22){b.setText("X");}if(in==23){b.setText("Q");}
         if(in==24){b.setText("J");}if(in==25){b.setText("Z");}if(in==26){b.setText(".");}
         if(in==27){b.setText(",");}if(in==28){b.setText("!");}if(in==29){b.setText("?");}
-        if(in==30){b.setText(";");}if(in==31){b.setText("@");}
+        if(in==30){b.setText(";");}if(in==31){b.setText("@");}if(in==32){b.setText("0");}
+        if(in==33){b.setText("1");}if(in==34){b.setText("2");}if(in==35){b.setText("3");}
+        if(in==36){b.setText("4");}if(in==37){b.setText("5");}if(in==38){b.setText("6");}
+        if(in==39){b.setText("7");}if(in==40){b.setText("8");}if(in==41){b.setText("9");}
     }
 
     //Pick the resource to load into an imageview
@@ -362,7 +401,10 @@ public class RadialActivity extends AppCompatActivity {
         if(in==21){imv.setImageResource(R.drawable.k);}if(in==22){imv.setImageResource(R.drawable.x);}if(in==23){imv.setImageResource(R.drawable.q);}
         if(in==24){imv.setImageResource(R.drawable.j);}if(in==25){imv.setImageResource(R.drawable.z);}if(in==26){imv.setImageResource(R.drawable.period);}
         if(in==27){imv.setImageResource(R.drawable.comma);}if(in==28){imv.setImageResource(R.drawable.exclamation);}if(in==29){imv.setImageResource(R.drawable.question);}
-        if(in==30){imv.setImageResource(R.drawable.semicolon);}if(in==31){imv.setImageResource(R.drawable.at);}
+        if(in==30){imv.setImageResource(R.drawable.semicolon);}if(in==31){imv.setImageResource(R.drawable.at);}if(in==32){imv.setImageResource(R.drawable.zero);}
+        if(in==33){imv.setImageResource(R.drawable.one);}if(in==34){imv.setImageResource(R.drawable.two);}if(in==35){imv.setImageResource(R.drawable.three);}
+        if(in==36){imv.setImageResource(R.drawable.four);}if(in==37){imv.setImageResource(R.drawable.five);}if(in==38){imv.setImageResource(R.drawable.six);}
+        if(in==39){imv.setImageResource(R.drawable.seven);}if(in==40){imv.setImageResource(R.drawable.eight);}if(in==41){imv.setImageResource(R.drawable.nine);}
     }
 
 //    //Pick the text to use for the button
@@ -450,6 +492,7 @@ public class RadialActivity extends AppCompatActivity {
         else if(setter==8) menu = "Menu 2";
         else if(setter==16) menu = "Menu 3";
         else if(setter==24) menu = "Menu 4";
+        else if(setter==32) menu = "Number Menu";
         else{throw new RuntimeException("Unknown menu type");}
     }
 

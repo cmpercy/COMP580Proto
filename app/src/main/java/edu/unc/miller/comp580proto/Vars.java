@@ -10,7 +10,7 @@ public class Vars {
     public static final float EXTERIOR_BUTTON_WIDTH = 150;
     public static final float EXTERIOR_BUTTON_HEIGHT = 100;
     public static final float EDITABLE_TEXT_BOX_HEIGHT = 80;
-    public static final long  TRANSITION_HOLD_TIME = 750;       //in ms
+    public static final long  TRANSITION_HOLD_TIME = 500;       //in ms
 
 
     public Vars(){}

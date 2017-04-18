@@ -71,7 +71,10 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 startActivity(intent);
                 break;
             case R.id.numbers_button:
-                //need to implement
+                intent = new Intent(this,RadialActivity.class);
+                indicator = 32;
+                hideUserString();
+                startActivity(intent);
                 break;
             case R.id.enter_button:
                 stringToSpeech();

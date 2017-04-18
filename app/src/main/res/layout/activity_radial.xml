@@ -64,6 +64,18 @@
             android:layout_alignParentBottom="true"
             android:clickable="false"
             android:background="#FFF"/>
+
+    <Button
+        android:id="@+id/exterior_button_3"
+        android:layout_width="@dimen/exterior_buttons_width"
+        android:layout_height="@dimen/exterior_buttons_height"
+        android:text="Function #4"
+        android:textSize="@dimen/exterior_buttons_text_size"
+        android:textColor="#000"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="false"
+        android:background="#FFF"/>
 <!--
     <Button
         android:id="@+id/space_button"
