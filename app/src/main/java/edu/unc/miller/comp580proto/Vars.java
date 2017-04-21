@@ -6,8 +6,8 @@ public class Vars {
     static String      userString;                            //user's shared input string
     static final int   BUTTON_WIDTH = 140;
     static final int   BUTTON_HEIGHT = 125;
-    static final int   AZ_BUTTON_WIDTH = 200;
-    static final int   AZ_BUTTON_HEIGHT = 200;
+    static final int   AZ_BUTTON_WIDTH = 250;
+    static final int   AZ_BUTTON_HEIGHT = 250;
     static final int   RADIAL_RADIUS = 325;
     static final float EXTERIOR_BUTTON_WIDTH = 150;
     static final float EXTERIOR_BUTTON_HEIGHT = 100;

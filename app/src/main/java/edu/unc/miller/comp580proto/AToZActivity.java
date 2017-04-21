@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     public static int indicator;
     static ArrayList<Region> AZRegionList = new ArrayList<>();
+    static ArrayList<TextView> AZViewRegionList = new ArrayList<>();
     private Calendar calendar;
     private Timestamp tstamp;
     private long time0,time1;
@@ -237,7 +239,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     }
                     //Create slide regions when ready and if they don't already exist
                     if(AZRegionList.size()<=4){
-                        int xOffset = 75; int yOffset = 50;
+                        int xOffset = 50; int yOffset = 25;
 //                        //Visual buttons for the regions; used for debugging only
 //                        Button button = new Button(mContext);
 //                        button.setX(i+xOffset);          //xoffset
@@ -248,11 +250,29 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
 //                        rl.addView(button);
                         System.out.println("Making region");
                         Region region = new Region(i+xOffset,(i+xOffset)+Vars.AZ_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.AZ_BUTTON_HEIGHT,"AZ Region"+AZRegionList.size());
-                        System.out.println(region.toString());
                         AZRegionList.add(region);
+                    }else{
+                        drawAZButtonOverlay();          //draws visual regions for the active AZRegions when uncommented
                     }
                 }
             });
+        }
+    }
+
+    boolean drawnAZButtonOverlay;
+
+    //Draws visual regions for the AZ buttons
+    public void drawAZButtonOverlay(){
+        if(!drawnAZButtonOverlay){
+            for(int i=0; i<AZRegionList.size();i++){
+                TextView tv = new TextView(this);
+                Region region = AZRegionList.get(i);
+                tv.setX(region.getX0()); tv.setY(region.getY0());
+                tv.setWidth((int)Math.abs((region.getX1()-region.getX0()))); tv.setHeight((int)Math.abs(region.getY1()-region.getY0()));
+                tv.setBackgroundColor(Color.GREEN);
+                rl.addView(tv);
+            }
+            drawnAZButtonOverlay = true;
         }
     }
 

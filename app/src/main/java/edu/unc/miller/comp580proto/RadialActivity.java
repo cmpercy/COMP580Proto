@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -280,9 +281,9 @@ public class RadialActivity extends AppCompatActivity {
             //Set information and coordinates for the buttons
             Button butt = new Button(this);
             butt.setId(i);
-            butt.setX((float)xpos-50);
+            butt.setX((float)xpos-40);
             butt.setY((float)ypos-40);
-            butt.setAlpha(0.0f);      //makes buttons transparent when uncommented
+            //butt.setAlpha(0.0f);      //makes buttons transparent, yet visible when uncommented
             butt.setWidth(buttonWidth);
             butt.setHeight(buttonHeight);
             buttonTextSetter(butt,setter);   //set the text for the circular button
@@ -304,14 +305,30 @@ public class RadialActivity extends AppCompatActivity {
     public void makeExteriorRegions(){
         setExteriorButtonText();
         Region buttonRegion;
-        buttonRegion = new Region(0.0f,Vars.EXTERIOR_BUTTON_WIDTH,Vars.EDITABLE_TEXT_BOX_HEIGHT,Vars.EXTERIOR_BUTTON_HEIGHT,"Exterior Button 0");
+        float topx1 = getResources().getDimension(R.dimen.exterior_buttons_width); float topy0 = getResources().getDimension(R.dimen.editable_text_box_height);
+        float topy1 = getResources().getDimension(R.dimen.exterior_buttons_height);
+        buttonRegion = new Region(0.0f,topx1,topy0,topy0+topy1,"Exterior Button 0");
         exteriorRegionArray[0] = buttonRegion;
-        buttonRegion = new Region(screenwidth-Vars.EXTERIOR_BUTTON_WIDTH,screenwidth,Vars.EDITABLE_TEXT_BOX_HEIGHT,Vars.EXTERIOR_BUTTON_HEIGHT,"Exterior Button 1");
+        buttonRegion = new Region(screenwidth-topx1,screenwidth,topy0,topy0+topy1,"Exterior Button 1");
         exteriorRegionArray[1] = buttonRegion;
-        buttonRegion = new Region(0.0f,Vars.EXTERIOR_BUTTON_WIDTH,screenheight-Vars.EXTERIOR_BUTTON_HEIGHT,screenheight,"Exterior Button 2");
+        buttonRegion = new Region(0.0f,topx1,screenheight-topy1/2,screenheight+topy1,"Exterior Button 2");
         exteriorRegionArray[2] = buttonRegion;
-        buttonRegion = new Region(screenwidth-Vars.EXTERIOR_BUTTON_WIDTH,screenwidth,screenheight-Vars.EXTERIOR_BUTTON_HEIGHT,screenheight,"Exterior Button 3");
+        buttonRegion = new Region(screenwidth-topx1,screenwidth,screenheight-topy1/2,screenheight+topy1,"Exterior Button 3");
         exteriorRegionArray[3] = buttonRegion;
+        drawOverExteriorRegions();              //uncomment to draw green boxes over active exterior regions
+    }
+
+    //Draws green boxes over active exterior regions
+    public void drawOverExteriorRegions(){
+        //Draw exterior regions from i=0 to i=exteriorRegionArray.length-1
+        for(int i=0; i<exteriorRegionArray.length; i++){
+            TextView tv = new TextView(this);
+            Region region = exteriorRegionArray[i];
+            tv.setX(region.getX0()); tv.setY(region.getY0());
+            tv.setWidth((int)Math.abs((region.getX1()-region.getX0()))); tv.setHeight((int)Math.abs(region.getY1()-region.getY0()));
+            tv.setBackgroundColor(Color.GREEN);
+            rl.addView(tv);
+        }
     }
 
     //Redraws and reinitializes the keyboard layout; gets called from an exterior button function
