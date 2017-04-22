@@ -26,4 +26,13 @@
     <string name="menu_4">Menu 4</string>
     <string name="number_menu">Number Menu</string>
 
+    <!-- Used for edit text layout -->
+    <string name="edit_text_description">EDIT TEXT</string>
+    <string name="left_arrow_description">LEFT ARROW</string>
+    <string name="right_arrow_description">RIGHT ARROW</string>
+    <string name="delete_description">DELETE</string>
+    <string name="space_description">SPACE</string>
+    <string name="help_description">HELP</string>
+
+
 </resources>

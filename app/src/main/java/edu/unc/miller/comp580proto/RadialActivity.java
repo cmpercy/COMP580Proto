@@ -186,6 +186,7 @@ public class RadialActivity extends AppCompatActivity {
                     appendUserString(" ");
                     print(" ");
                     Intent intent = new Intent(this, AToZActivity.class);
+                    AToZActivity.changedActivity = false;
                     startActivity(intent);
                 }
                 break;
@@ -498,7 +499,7 @@ public class RadialActivity extends AppCompatActivity {
         updateUserString();
     }
 
-    //Set the text of the edit text box
+    //Set the text of the edit text box, editText id must match the editText id for this activity
     public void updateUserString(){
         if(Vars.userString!=null){
             EditText editText = (EditText)findViewById(R.id.radial_text_field);
@@ -561,6 +562,7 @@ public class RadialActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, AToZActivity.class);
+        AToZActivity.changedActivity = false;
         startActivity(intent);
     }
 

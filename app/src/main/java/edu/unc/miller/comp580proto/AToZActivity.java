@@ -28,7 +28,8 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private Calendar calendar;
     private Timestamp tstamp;
     private long time0,time1;
-    boolean changedActivity, startedCheckingTime;
+    static boolean changedActivity;         //needs to be reset when leaving other activities in order to keep reading touch input
+    boolean startedCheckingTime;
     boolean canResume = true;
     boolean checkingAZ0,checkingAZ1,checkingAZ2,checkingAZ3,checkingAZ4, checkingAZ5, checkingAZ6;
     Context mContext;
@@ -253,6 +254,9 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     public void AZButtonFunctionSix(){
         System.out.println("Edit Text Activity");
+        Intent intent = new Intent(this, EditTextActivity.class);
+        hideUserString();
+        startActivity(intent);
     }
 
     //Grab the initial time when the user entered the region
@@ -412,6 +416,11 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 hideUserString();
                 startActivity(intent);
                 break;
+            case R.id.edit_text_button:
+                intent = new Intent(this, EditTextActivity.class);
+                hideUserString();
+                startActivity(intent);
+                break;
             case R.id.enter_button:
                 stringToSpeech();
                 break;
@@ -438,7 +447,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         centralRegion = new Region(0.0f,1000.0f,0.0f,1000.0f,"Select");
     }
 
-    //Set the text of the edit text box
+    //Set the text of the edit text box, editText id must match the editText id for this activity
     public void updateUserString(){
         if(Vars.userString!=null){
             EditText editText = (EditText)findViewById(R.id.a_to_z_text_field);
