@@ -6,7 +6,7 @@ public class Region {
     private float x0,x1,y0,y1;
     private String label;
 
-    public Region(float startx, float endx, float starty, float endy, String lbl){
+    Region(float startx, float endx, float starty, float endy, String lbl){
         x0 = startx;
         x1 = endx;
         y0 = starty;
@@ -14,16 +14,20 @@ public class Region {
         label = lbl;
     }
 
-    public boolean checkBounds(float x,float y){
+    boolean checkBounds(float x,float y){
         boolean checkX = (x>=x0)&&(x<=x1);
         boolean checkY = (y>=y0)&&(y<=y1);
         return (checkX&&checkY);
     }
 
-    public float getX0(){return x0;}
-    public float getX1(){return x1;}
-    public float getY0(){return y0;}
-    public float getY1(){return y1;}
+    float getX0(){return x0;}
+    float getX1(){return x1;}
+    float getY0(){return y0;}
+    float getY1(){return y1;}
+    void setX0(int a){this.x0=a;}
+    void setX1(int a){this.x1=a;}
+    void setY0(int a){this.y0=a;}
+    void setY1(int a){this.y1=a;}
 
     public String getLabel(){
         return label;

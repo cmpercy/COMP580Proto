@@ -9,6 +9,8 @@ public class Vars {
     static final int   AZ_BUTTON_WIDTH = 250;
     static final int   AZ_BUTTON_HEIGHT = 250;
     static final int   RADIAL_RADIUS = 325;
+    static final int   ENTER_BUTTON_WIDTH = 250;
+    static final int   ENTER_BUTTON_HEIGHT = 125;
     static final float EXTERIOR_BUTTON_WIDTH = 150;
     static final float EXTERIOR_BUTTON_HEIGHT = 100;
     static final float EDITABLE_TEXT_BOX_HEIGHT = 80;

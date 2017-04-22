@@ -313,7 +313,7 @@ public class RadialActivity extends AppCompatActivity {
         exteriorRegionArray[1] = buttonRegion;
         buttonRegion = new Region(0.0f,topx1,screenheight-topy1/2,screenheight+topy1,"Exterior Button 2");
         exteriorRegionArray[2] = buttonRegion;
-        buttonRegion = new Region(screenwidth-topx1,screenwidth,screenheight-topy1/2,screenheight+topy1,"Exterior Button 3");
+        buttonRegion = new Region(screenwidth-topx1,screenwidth,screenheight-topy1/2,screenheight+topy1,"NUMBERS");
         exteriorRegionArray[3] = buttonRegion;
         drawOverExteriorRegions();              //uncomment to draw green boxes over active exterior regions
     }
@@ -324,6 +324,8 @@ public class RadialActivity extends AppCompatActivity {
         for(int i=0; i<exteriorRegionArray.length; i++){
             TextView tv = new TextView(this);
             Region region = exteriorRegionArray[i];
+            tv.setText(region.getLabel());
+            tv.setTextColor(Color.BLACK);
             tv.setX(region.getX0()); tv.setY(region.getY0());
             tv.setWidth((int)Math.abs((region.getX1()-region.getX0()))); tv.setHeight((int)Math.abs(region.getY1()-region.getY0()));
             tv.setBackgroundColor(Color.GREEN);

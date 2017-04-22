@@ -36,7 +36,7 @@
         app:srcCompat="@drawable/zone1"
         android:contentDescription="@string/zone1_text"
         android:layout_alignTop="@+id/enter_button"
-        android:layout_toStartOf="@+id/space_button" />
+        android:layout_toStartOf="@+id/edit_text_button" />
 
     <ImageView
         android:id="@+id/zone2_button"
@@ -69,7 +69,7 @@
         android:onClick="aToZButtonClicked"
         app:srcCompat="@drawable/zone4"
         android:contentDescription="@string/zone4_text"
-        android:layout_alignBottom="@+id/space_button"
+        android:layout_alignBottom="@+id/edit_text_button"
         android:layout_alignStart="@+id/zone2_button"
         android:layout_marginStart="23dp" />
 
@@ -86,10 +86,10 @@
         android:layout_marginBottom="23dp" />
 
     <ImageView
-        android:id="@+id/space_button"
+        android:id="@+id/edit_text_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/space"
+        app:srcCompat="@drawable/edit_text"
         android:contentDescription="@string/menu_space"
         android:layout_alignBottom="@+id/zone3_button"
         android:layout_alignEnd="@+id/numbers_button" />

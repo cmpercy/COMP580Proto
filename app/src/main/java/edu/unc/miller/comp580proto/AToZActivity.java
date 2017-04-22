@@ -30,7 +30,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private long time0,time1;
     boolean changedActivity, startedCheckingTime;
     boolean canResume = true;
-    boolean checkingAZ0,checkingAZ1,checkingAZ2,checkingAZ3,checkingAZ4;
+    boolean checkingAZ0,checkingAZ1,checkingAZ2,checkingAZ3,checkingAZ4, checkingAZ5, checkingAZ6;
     Context mContext;
     RelativeLayout rl;
     Region centralRegion;
@@ -53,7 +53,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public boolean onTouchEvent(MotionEvent e){
         //---ROUTINES FOR AZ BUTTONS BELOW---
         //Check AZ0 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4){
+        if(!changedActivity&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
             Region tempRegion = AZRegionList.get(0);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -75,11 +75,11 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ1 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
             Region tempRegion = AZRegionList.get(1);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
-                System.out.println("Running exRegionZero");
+                System.out.println("Running exRegionOne");
                 checkingAZ1 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
@@ -97,11 +97,11 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ2 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ3&&!checkingAZ4){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
             Region tempRegion = AZRegionList.get(2);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
-                System.out.println("Running exRegionZero");
+                System.out.println("Running exRegionTwo");
                 checkingAZ2 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
@@ -119,11 +119,11 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ3 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ4){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
             Region tempRegion = AZRegionList.get(3);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
-                System.out.println("Running exRegionZero");
+                System.out.println("Running exRegionThree");
                 checkingAZ3 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
@@ -141,11 +141,11 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ4 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ5&&!checkingAZ6){
             Region tempRegion = AZRegionList.get(4);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
-                System.out.println("Running exRegionZero");
+                System.out.println("Running exRegionFour");
                 checkingAZ4 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
@@ -160,6 +160,51 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 changedActivity = false;
                 startedCheckingTime = false;
                 checkingAZ4 = false;
+            }
+        }
+        //Check AZ5 for possible keyboard menu transition
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ6){
+            Region tempRegion = AZRegionList.get(5);
+            //If event is in bounds of this region...
+            if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
+                System.out.println("Running exRegionFive");
+                checkingAZ5 = true;
+                if(!startedCheckingTime) setTimeZero();
+                if(startedCheckingTime) setTimeOne();
+                //If the user has been in the region long enough, swap keyboard menus
+                if(Math.abs(time0-time1)>Vars.TRANSITION_HOLD_TIME){
+                    changedActivity = true;
+                    AZButtonFunctionFive();
+                }
+            }else{
+                //Reset variables when the user has left one of the exterior button regions
+                canResume = true;
+                changedActivity = false;
+                startedCheckingTime = false;
+                checkingAZ5 = false;
+            }
+        }
+
+        //Check AZ6 for possible keyboard menu transition
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5){
+            Region tempRegion = AZRegionList.get(6);
+            //If event is in bounds of this region...
+            if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
+                System.out.println("Running exRegionFive");
+                checkingAZ6 = true;
+                if(!startedCheckingTime) setTimeZero();
+                if(startedCheckingTime) setTimeOne();
+                //If the user has been in the region long enough, swap keyboard menus
+                if(Math.abs(time0-time1)>Vars.TRANSITION_HOLD_TIME){
+                    changedActivity = true;
+                    AZButtonFunctionSix();
+                }
+            }else{
+                //Reset variables when the user has left one of the exterior button regions
+                canResume = true;
+                changedActivity = false;
+                startedCheckingTime = false;
+                checkingAZ6 = false;
             }
         }
         return true;
@@ -201,6 +246,15 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         startActivity(intent);
     }
 
+    public void AZButtonFunctionFive(){
+        System.out.println("Enter Activity");
+        stringToSpeech();
+    }
+
+    public void AZButtonFunctionSix(){
+        System.out.println("Edit Text Activity");
+    }
+
     //Grab the initial time when the user entered the region
     public void setTimeZero(){
         System.out.println("Setting time zero");
@@ -221,15 +275,17 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     //Method to attach layout change listeners to image views; needed to access
     //properties of image views once they've actually been drawn to the screen
     //Prevents return values of 0 when trying to access a view's properties
+    int num = 5;            //number of buttons in the activity (not including enter)
+    int viewID;
     public void setImageViewLayoutListeners(){
         int id0 = R.id.zone1_button; int id1 = R.id.zone2_button;
         int id2 = R.id.zone3_button; int id3 = R.id.zone4_button;
-        int id4 = R.id.numbers_button;
-        for(int i=0; i<5; i++){
-            int viewID = -1;
+        int id4 = R.id.numbers_button;  int id5 = R.id.edit_text_button;
+        for(int i=0; i<num; i++){
+            viewID = -1;
             if(i==0){viewID=id0;} if(i==1){viewID=id1;}
             if(i==2){viewID=id2;} if(i==3){viewID=id3;}
-            if(i==4){viewID=id4;}
+            if(i==4){viewID=id4;} if(i==5){viewID=id5;}
             ImageView iv = (ImageView)findViewById(viewID);
             iv.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                 @Override
@@ -238,35 +294,66 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                         return;
                     }
                     //Create slide regions when ready and if they don't already exist
-                    if(AZRegionList.size()<=4){
+                    if(AZRegionList.size()<=(num-1)){
                         int xOffset = 50; int yOffset = 25;
-//                        //Visual buttons for the regions; used for debugging only
-//                        Button button = new Button(mContext);
-//                        button.setX(i+xOffset);          //xoffset
-//                        button.setY(i1+yOffset);
-//                        button.setWidth(Vars.AZ_BUTTON_WIDTH);
-//                        button.setHeight(Vars.AZ_BUTTON_HEIGHT);
-//                        button.setBackgroundColor(Color.RED);
-//                        rl.addView(button);
-                        System.out.println("Making region");
                         Region region = new Region(i+xOffset,(i+xOffset)+Vars.AZ_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.AZ_BUTTON_HEIGHT,"AZ Region"+AZRegionList.size());
                         AZRegionList.add(region);
                     }else{
-                        drawAZButtonOverlay();          //draws visual regions for the active AZRegions when uncommented
+                        addEnterRegion();
+                        addEditTextRegion();
                     }
                 }
             });
         }
     }
 
+    public void addEnterRegion(){
+        ImageView iv = (ImageView)findViewById(R.id.enter_button);
+        iv.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                if (i == 0 && i1 == 0 && i2 == 0 && i3 == 0) {
+                    return;
+                }
+                //Create slide regions when ready and if they don't already exist
+                if(AZRegionList.size()==num){
+                    int xOffset = 50; int yOffset = 25;
+                    Region region = new Region(i+xOffset,(i+xOffset)+Vars.ENTER_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.ENTER_BUTTON_HEIGHT,"ENTER REGION");
+                    AZRegionList.add(region);
+                }
+            }
+        });
+    }
+
+    public void addEditTextRegion(){
+        ImageView iv = (ImageView)findViewById(R.id.edit_text_button);
+        iv.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                if (i == 0 && i1 == 0 && i2 == 0 && i3 == 0) {
+                    return;
+                }
+                //Create slide regions when ready and if they don't already exist
+                if(AZRegionList.size()==(num+1)){
+                    int xOffset = 50; int yOffset = 25;
+                    Region region = new Region(i+xOffset,(i+xOffset)+Vars.ENTER_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.ENTER_BUTTON_HEIGHT,"EDIT TEXT REGION");
+                    AZRegionList.add(region);
+                }else{
+                    drawOverAZRegions();        //draws visual regions for the active AZRegions when uncommented
+                }
+            }
+        });
+    }
+
     boolean drawnAZButtonOverlay;
 
     //Draws visual regions for the AZ buttons
-    public void drawAZButtonOverlay(){
+    public void drawOverAZRegions(){
         if(!drawnAZButtonOverlay){
             for(int i=0; i<AZRegionList.size();i++){
                 TextView tv = new TextView(this);
                 Region region = AZRegionList.get(i);
+                tv.setText(region.getLabel());
                 tv.setX(region.getX0()); tv.setY(region.getY0());
                 tv.setWidth((int)Math.abs((region.getX1()-region.getX0()))); tv.setHeight((int)Math.abs(region.getY1()-region.getY0()));
                 tv.setBackgroundColor(Color.GREEN);
@@ -291,6 +378,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         }
     }
 
+    //Might need to check that these are still mapped correctly
     public void aToZButtonClicked(View view){
         Intent intent;
         switch(view.getId()){
@@ -332,23 +420,6 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 break;
         }
     }
-
-//    //You'll need to deactivate the alphabet buttons
-//    @Override
-//    public boolean onTouchEvent(MotionEvent motionEvent){
-//        switch(motionEvent.getAction()){
-//            case MotionEvent.ACTION_UP:
-//                if(centralRegion.checkBounds(motionEvent.getRawX(),motionEvent.getRawY())){
-//                    //Return to main activity
-//                    Intent intent = new Intent(this,MainActivity.class);
-//                    startActivity(intent);
-//                }
-//                break;
-//            default:
-//                break;
-//        }
-//        return true;
-//    }
 
     public void initialize(){
         //Snag the relative layout for this activity
