@@ -293,7 +293,7 @@ public class RadialActivity extends AppCompatActivity {
             //Create button regions (used for slide motion detection) and add them to a list
             float regionx = butt.getX(); float regiony = butt.getY();
             String label = butt.getText().toString();
-            //Create the interactable region for the button
+            //Create the interactive region for the button
             Region buttonRegion = new Region(regionx,regionx+(float)buttonWidth,regiony,regiony+(float)buttonHeight,label);
             regionList.add(buttonRegion);
             rl.addView(butt);

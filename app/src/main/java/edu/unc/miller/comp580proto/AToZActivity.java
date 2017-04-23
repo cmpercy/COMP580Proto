@@ -284,12 +284,12 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void setImageViewLayoutListeners(){
         int id0 = R.id.zone1_button; int id1 = R.id.zone2_button;
         int id2 = R.id.zone3_button; int id3 = R.id.zone4_button;
-        int id4 = R.id.numbers_button;  int id5 = R.id.edit_text_button;
+        int id4 = R.id.numbers_button;
         for(int i=0; i<num; i++){
             viewID = -1;
             if(i==0){viewID=id0;} if(i==1){viewID=id1;}
             if(i==2){viewID=id2;} if(i==3){viewID=id3;}
-            if(i==4){viewID=id4;} if(i==5){viewID=id5;}
+            if(i==4){viewID=id4;}
             ImageView iv = (ImageView)findViewById(viewID);
             iv.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
                 @Override
