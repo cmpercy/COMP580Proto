@@ -11,4 +11,4 @@ Update on Regions and Edit Text:
 
 -The help button (blue question mark) in the EditTextActivity is currently acting as a back button to return to the AToZActivity
 
--Slide functionality now exists for the EditText activity.  Since a lot of this activity is requires you to manipulate a string, I might suggest setting the userString variable in the Vars class to a default value on startup.
+-Slide functionality now exists for the EditText activity.  Since a lot of this activity requires you to manipulate a string, I might suggest setting the userString variable in the Vars class to a default value on startup.
