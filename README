@@ -7,7 +7,8 @@ Update on Regions and Edit Text:
 	~Visual regions in the AToZActivity class can be toggled off by commenting out the drawOverAZRegions function located in the addEditTextRegion method
 	~Visual regions in the RadialActivity can be toggled off by commenting out the drawOverExteriorRegions method located in the makeExteriorRegions function
 	~Uncomment the line butt.setAlpha(0.0f) in the makeRadialRegions method to make transparent but visible buttons appear
+	*There seems to be a glitch when drawing regions in the radial and edit text activities.  Due to the transparent overlay, I think the regions are still invisible.  I believe that even though they are invisible, they are correctly matched to the buttons now.
 
 -The help button (blue question mark) in the EditTextActivity is currently acting as a back button to return to the AToZActivity
 
-*The buttons in the EditTextActivity are not slide-compatible at the moment.  I will be adding that feature within the next day but the code skeleton is setup via onClick methods in the EditTextActivity class to allow you to go ahead and start adding implementations.  The method that serves as the code skeleton is editTextButtonFunction(View view)
+-Slide functionality now exists for the EditText activity.  Since a lot of this activity is requires you to manipulate a string, I might suggest setting the userString variable in the Vars class to a default value on startup.

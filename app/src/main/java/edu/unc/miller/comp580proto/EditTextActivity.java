@@ -8,14 +8,10 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -28,7 +24,7 @@ public class EditTextActivity extends AppCompatActivity {
     private int screenheight,screenwidth;
     private ArrayList<Region> editTextRegionList = new ArrayList<>();
     static boolean changedActivity;                                                                     //flag to suspend action of touch events
-    boolean checkingAZ0,checkingAZ1,checkingAZ2,checkingAZ3,checkingAZ4, checkingAZ5, checkingAZ6;      //flags used for touch event confirmation
+    boolean checkingET0, checkingET1, checkingET2, checkingET3, checkingET4;                            //flags used for touch event confirmation
     boolean startedCheckingTime;
     private Calendar calendar;
     private Timestamp tstamp;
@@ -47,141 +43,156 @@ public class EditTextActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e){
         //---ROUTINES FOR EDIT TEXT BUTTONS BELOW---
         //Check ET0 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingET1 &&!checkingET2 &&!checkingET3 &&!checkingET4){
             Region tempRegion = editTextRegionList.get(0);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                 //System.out.println("Running EditRegion0");
-                checkingAZ0 = true;
+                checkingET0 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
                 //If the user has been in the region long enough, do something
                 if(Math.abs(time0-time1)>Vars.EDIT_TEXT_TRANSITION_HOLD_TIME){
                     changedActivity = true;
-                    AZButtonFunctionZero();
+                    ETButtonLeftArrowFunction();
                 }
             }else{
                 //Reset variables when the user has left one of the exterior button regions
                 canResume = true;
                 changedActivity = false;
                 startedCheckingTime = false;
-                checkingAZ0 = false;
+                checkingET0 = false;
             }
         }
         //Check ET1 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingET0 &&!checkingET2 &&!checkingET3 &&!checkingET4){
             Region tempRegion = editTextRegionList.get(1);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                 //System.out.println("Running EditRegion1");
-                checkingAZ1 = true;
+                checkingET1 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
                 //If the user has been in the region long enough, do something
                 if(Math.abs(time0-time1)>Vars.EDIT_TEXT_TRANSITION_HOLD_TIME){
                     changedActivity = true;
-                    AZButtonFunctionOne();
+                    ETButtonRightArrowFunction();
                 }
             }else{
                 //Reset variables when the user has left one of the exterior button regions
                 canResume = true;
                 changedActivity = false;
                 startedCheckingTime = false;
-                checkingAZ1 = false;
+                checkingET1 = false;
             }
         }
         //Check ET2 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingET0 &&!checkingET1 &&!checkingET3 &&!checkingET4){
             Region tempRegion = editTextRegionList.get(2);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                 //System.out.println("Running EditRegion2");
-                checkingAZ2 = true;
+                checkingET2 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
                 //If the user has been in the region long enough, do something
                 if(Math.abs(time0-time1)>Vars.EDIT_TEXT_TRANSITION_HOLD_TIME){
                     changedActivity = true;
-                    AZButtonFunctionTwo();
+                    ETButtonDeleteFunction();
                 }
             }else{
                 //Reset variables when the user has left one of the exterior button regions
                 canResume = true;
                 changedActivity = false;
                 startedCheckingTime = false;
-                checkingAZ2 = false;
+                checkingET2 = false;
             }
         }
         //Check ET3 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingET0 &&!checkingET1 &&!checkingET2 &&!checkingET4){
             Region tempRegion = editTextRegionList.get(3);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                 //System.out.println("Running EditRegion3");
-                checkingAZ3 = true;
+                checkingET3 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
                 //If the user has been in the region long enough, do something
                 if(Math.abs(time0-time1)>Vars.EDIT_TEXT_TRANSITION_HOLD_TIME){
                     changedActivity = true;
-                    AZButtonFunctionThree();
+                    ETButtonSpaceFunction();
                 }
             }else{
                 //Reset variables when the user has left one of the exterior button regions
                 canResume = true;
                 changedActivity = false;
                 startedCheckingTime = false;
-                checkingAZ3 = false;
+                checkingET3 = false;
             }
         }
         //Check ET4 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingET0 &&!checkingET1 &&!checkingET2 &&!checkingET3){
             Region tempRegion = editTextRegionList.get(4);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
                 //System.out.println("Running EditRegion4");
-                checkingAZ4 = true;
+                checkingET4 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
                 //If the user has been in the region long enough, do something
                 if(Math.abs(time0-time1)>Vars.EDIT_TEXT_TRANSITION_HOLD_TIME){
                     changedActivity = true;
-                    AZButtonFunctionFour();
+                    ETButtonHelpFunction();
                 }
             }else{
                 //Reset variables when the user has left one of the exterior button regions
                 canResume = true;
                 changedActivity = false;
                 startedCheckingTime = false;
-                checkingAZ4 = false;
+                checkingET4 = false;
             }
         }
         return true;
     }
 
-    public void AZButtonFunctionZero(){
+    //Insert logic for left arrow function here
+    //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
+    public void ETButtonLeftArrowFunction(){
         System.out.println("Left Arrow");
         resetTimer(); resetFlags();
     }
 
-    public void AZButtonFunctionOne(){
+    //Insert logic for right arrow function here
+    //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
+    public void ETButtonRightArrowFunction(){
         System.out.println("Right Arrow");
         resetTimer(); resetFlags();
     }
 
-    public void AZButtonFunctionTwo(){
+    //Insert logic for delete button
+    //Recall that there is a delete last char method in the RadialActivity class called deleteLastCharUserString
+    //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
+    public void ETButtonDeleteFunction(){
         System.out.println("Delete");
         resetTimer(); resetFlags();
     }
 
-    public void AZButtonFunctionThree(){
+    //Insert logic for space button
+    //Recall that there is a space method already made in the RadialActivity class called spacePressed
+    //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
+    public void ETButtonSpaceFunction(){
         System.out.println("Space");
         resetTimer(); resetFlags();
     }
 
-    public void AZButtonFunctionFour(){
+    //Using the help button to return to the AZ Activity (for now)
+    //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
+    public void ETButtonHelpFunction(){
         System.out.println("Help");
         resetTimer(); resetFlags();
+        Intent intent = new Intent(this, AToZActivity.class);
+        AToZActivity.changedActivity = false;
+        startActivity(intent);
     }
 
     //Resets timing variables to allow for repeated execution on holds
@@ -190,11 +201,10 @@ public class EditTextActivity extends AppCompatActivity {
         changedActivity = false;
     }
 
-    //Reset flags to indicate which region is active, is used to allow access to other regions after triggering one's function
+    //Reset flags to indicate which region is active, is used to allow access to other regions after triggering a function
     public void resetFlags(){
-        checkingAZ0=false; checkingAZ1=false; checkingAZ2=false;
-        checkingAZ3=false; checkingAZ4=false; checkingAZ5=false;
-        checkingAZ6=false;
+        checkingET0 =false; checkingET1 =false; checkingET2 =false;
+        checkingET3 =false; checkingET4 =false;
     }
 
     public void initialize(){
@@ -208,28 +218,19 @@ public class EditTextActivity extends AppCompatActivity {
     public void editTextButtonFunction(View view){
        switch(view.getId()){
            case R.id.left_arrow:
-               //Insert logic for left_arrow button
-               System.out.println("Left");
+               ETButtonLeftArrowFunction();
                break;
            case R.id.right_arrow:
-               //Insert logic for right_arrow button
-               System.out.println("Right");
+               ETButtonRightArrowFunction();
                break;
            case R.id.delete_button:
-               //Insert logic for delete button
-               //Recall that there is a delete last char method in the RadialActivity class called deleteLastCharUserString
-               System.out.println("Delete");
+               ETButtonDeleteFunction();
                break;
            case R.id.space_button:
-               //Insert logic for space button
-               //Recall that there is a space method already made in the RadialActivity class called spacePressed
-               System.out.println("Space");
+               ETButtonSpaceFunction();
                break;
            case R.id.help_button:
-               //Using the help button to return to the AZ Activity
-               Intent intent = new Intent(this, AToZActivity.class);
-               AToZActivity.changedActivity = false;
-               startActivity(intent);
+               ETButtonHelpFunction();
                break;
            default:
                break;
@@ -258,7 +259,7 @@ public class EditTextActivity extends AppCompatActivity {
                     if(editTextRegionList.size()<num){
                         int xOffset = 0; int yOffset = 0;
                         Region region = new Region(i+xOffset,(i+xOffset)+Vars.EDIT_TEXT_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.EDIT_TEXT_BUTTON_HEIGHT,"EditText Region"+editTextRegionList.size());
-                        System.out.println("Made: "+"EditText Region"+editTextRegionList.size());
+                        //System.out.println("Made: "+"EditText Region"+editTextRegionList.size());
                         editTextRegionList.add(region);
                     }else{
                         drawOverEditTextRegions();
@@ -269,7 +270,7 @@ public class EditTextActivity extends AppCompatActivity {
 
     }
 
-    //Draws visual regions for the EditTextRegions
+    //Draws visual regions for the EditTextRegions (doesn't seem to actually be appearing due to overlay shenanigans)
     private boolean drawnEditTextOverlay;
     public void drawOverEditTextRegions(){
         rl = (RelativeLayout)findViewById(R.id.activity_edit_text);
@@ -281,7 +282,7 @@ public class EditTextActivity extends AppCompatActivity {
                 tv.setX(region.getX0()); tv.setY(region.getY0());
                 tv.setWidth((int)Math.abs((region.getX1()-region.getX0()))); tv.setHeight((int)Math.abs(region.getY1()-region.getY0()));
                 tv.setBackgroundColor(Color.RED);
-                System.out.println("Region: "+region.getX0()+" "+region.getY0()+" "+region.getX1()+" "+region.getY1());
+                //System.out.println("Region: "+region.getX0()+" "+region.getY0()+" "+region.getX1()+" "+region.getY1());
                 rl.addView(tv);
             }
             drawnEditTextOverlay = true;

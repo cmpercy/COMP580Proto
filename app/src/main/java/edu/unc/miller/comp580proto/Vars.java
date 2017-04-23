@@ -17,7 +17,7 @@ public class Vars {
     static final float EXTERIOR_BUTTON_HEIGHT = 100;
     static final float EDITABLE_TEXT_BOX_HEIGHT = 80;
     static final long  TRANSITION_HOLD_TIME = 500;                  //hold time in ms for functions in most other activities
-    static final long  EDIT_TEXT_TRANSITION_HOLD_TIME = 1000;       //hold time in ms for functions in EditText activity
+    static final long  EDIT_TEXT_TRANSITION_HOLD_TIME = 750;       //hold time in ms for functions in EditText activity
 
 
     public Vars(){}
