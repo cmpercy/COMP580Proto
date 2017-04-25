@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_a_to_z"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="edu.unc.miller.comp580proto.MainActivity">
+    <EditText
+        android:id="@+id/a_to_z_text_field"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/editable_text_box_height"
+        android:focusable="false"/>
+
+    <ImageView
+        android:id="@+id/how_to_make_a_sentence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/zone5"
+        android:contentDescription="@string/menu_numbers"/>
+
+    <ImageView
+        android:id="@+id/how_change_region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/zone1"
+        android:contentDescription="@string/zone1_text"
+        android:layout_alignTop="@+id/enter_button"
+        android:layout_toStartOf="@+id/back_button" />
+
+    <ImageView
+        android:id="@+id/how_exit_a_region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/zone2"
+        android:contentDescription="@string/zone2_text"
+        android:layout_alignTop="@+id/enter_button"
+        android:layout_toEndOf="@+id/enter_button" />
+
+    <ImageView
+        android:id="@+id/how_to_edit_a_sentence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/zone3"
+        android:contentDescription="@string/zone3_text"
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/how_change_region"
+        android:layout_toStartOf="@+id/enter_button" />
+
+    <ImageView
+        android:id="@+id/how_to_submit_a_sentece"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/zone4"
+        android:contentDescription="@string/zone4_text"
+        android:layout_alignBottom="@+id/back_button"
+        android:layout_alignStart="@+id/how_exit_a_region"
+        android:layout_marginStart="23dp" />
+
+    <ImageView
+        android:id="@+id/enter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="aToZButtonClicked"
+        app:srcCompat="@drawable/enter"
+        android:contentDescription="@string/menu_enter"
+        android:layout_above="@+id/how_to_make_a_sentence"
+        android:layout_alignEnd="@+id/how_to_make_a_sentence"
+        android:layout_marginBottom="23dp" />
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/edit_text"
+        android:contentDescription="@string/menu_space"
+        android:layout_alignBottom="@+id/how_to_edit_a_sentence"
+        android:layout_alignEnd="@+id/how_to_make_a_sentence" />
+
+</RelativeLayout>

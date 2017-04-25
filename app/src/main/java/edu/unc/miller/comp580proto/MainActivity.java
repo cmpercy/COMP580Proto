@@ -40,9 +40,15 @@ public class MainActivity extends AppCompatActivity implements OnInitListener{
             case R.id.edit_text_button:
                 //TODO
                 break;
+//            case R.id.instruction_button:
+//                //TODO
+//                break;
             case R.id.most_popular_words_button:
                 //TODO
                 break;
+//            case R.id.instruction_button
+//                //TODO
+//                break;
             default:
                 //Do nothing, no identified button press
                 break;
