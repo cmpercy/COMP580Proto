@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:clickable="true"
         android:onClick="aToZButtonClicked"
-        app:srcCompat="@drawable/zone5"
+        app:srcCompat="@drawable/how_to_make_a_sentence"
         android:contentDescription="@string/menu_numbers"/>
 
     <ImageView
