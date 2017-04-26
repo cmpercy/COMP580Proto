@@ -5,9 +5,12 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.SpannableStringBuilder;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -37,6 +40,13 @@ public class EditTextActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_text);
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         initialize();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM, WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //^^ prevents softkeyboard from opening despite edittext gaining focus
+        EditText text = (EditText) findViewById(R.id.editactivity_text_field);
+        text.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        text.setTextIsSelectable(true);
+        text.requestFocus();
+        text.setSelection(text.getText().length()); //put cursor at the end of the text
     }
 
     @Override
@@ -158,14 +168,26 @@ public class EditTextActivity extends AppCompatActivity {
     //Insert logic for left arrow function here
     //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
     public void ETButtonLeftArrowFunction(){
-        System.out.println("Left Arrow");
+        EditText text = (EditText) findViewById(R.id.editactivity_text_field);
+        if (text.getSelectionStart() == 0) { //we are at start of string, do nothing
+            //do nothing
+        }
+        else { //otherwise move left by one
+            text.setSelection(text.getSelectionStart() - 1);
+        }
         resetTimer(); resetFlags();
     }
 
     //Insert logic for right arrow function here
     //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
     public void ETButtonRightArrowFunction(){
-        System.out.println("Right Arrow");
+        EditText text = (EditText) findViewById(R.id.editactivity_text_field);
+        if (text.getSelectionStart() == text.getText().length()) { //we are at end of string, do nothing
+            //do nothing
+        }
+        else { //otherwise move left by one
+            text.setSelection(text.getSelectionStart() + 1);
+        }
         resetTimer(); resetFlags();
     }
 
@@ -173,7 +195,13 @@ public class EditTextActivity extends AppCompatActivity {
     //Recall that there is a delete last char method in the RadialActivity class called deleteLastCharUserString
     //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
     public void ETButtonDeleteFunction(){
-        System.out.println("Delete");
+        EditText text = (EditText) findViewById(R.id.editactivity_text_field);
+        int position = text.getSelectionStart();
+        SpannableStringBuilder replacer = new SpannableStringBuilder(text.getText());
+        replacer.replace(position-1, position, ""); //replaces character to the left with the empty string
+        text.setText(replacer);
+        text.setSelection(position-1); //sets cursor one character before it used to be
+        Vars.userString = text.getText().toString(); //updates userString
         resetTimer(); resetFlags();
     }
 
@@ -181,7 +209,9 @@ public class EditTextActivity extends AppCompatActivity {
     //Recall that there is a space method already made in the RadialActivity class called spacePressed
     //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
     public void ETButtonSpaceFunction(){
-        System.out.println("Space");
+        EditText text = (EditText) findViewById(R.id.editactivity_text_field);
+        text.getText().insert(text.getSelectionStart(), " "); //adds a space at the cursor
+        Vars.userString = text.getText().toString(); //updates userString
         resetTimer(); resetFlags();
     }
 
@@ -297,9 +327,10 @@ public class EditTextActivity extends AppCompatActivity {
 
     //Set the text of the edit text box, editText id must match the editText id for this activity
     public void updateUserString(){
-        if(Vars.userString!=null){
+        if(Vars.userString != null){
             EditText editText = (EditText)findViewById(R.id.editactivity_text_field);
-            if(editText!=null) editText.setText(Vars.userString);
+            if(editText!= null) editText.setText(Vars.userString);
+            editText.setSelection(editText.getText().length());
         }
     }
 

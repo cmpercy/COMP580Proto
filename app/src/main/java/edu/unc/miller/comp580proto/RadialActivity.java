@@ -6,10 +6,12 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -49,6 +51,12 @@ public class RadialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_radial);
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         initialize();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM, WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //^^ prevents softkeyboard from opening despite edittext gaining focus
+        EditText text = (EditText) findViewById(R.id.radial_text_field);
+        text.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        text.setTextIsSelectable(true);
+        text.requestFocus();
     }
 
     public void initialize(){
@@ -494,7 +502,7 @@ public class RadialActivity extends AppCompatActivity {
     }
 
     public void appendUserString(String s){
-        if(Vars.userString==null) Vars.userString = "";
+        if(Vars.userString == null) Vars.userString = "";
         Vars.userString = Vars.userString + s;
         updateUserString();
     }
@@ -504,6 +512,7 @@ public class RadialActivity extends AppCompatActivity {
         if(Vars.userString!=null){
             EditText editText = (EditText)findViewById(R.id.radial_text_field);
             if(editText!=null) editText.setText(Vars.userString);
+            editText.setSelection(editText.getText().length()); //put cursor at the end of the text
         }
     }
 
@@ -534,7 +543,10 @@ public class RadialActivity extends AppCompatActivity {
         screenwidth = displaymetrics.widthPixels;
     }
 
-    protected void onResume(){super.onResume(); updateUserString();}
+    protected void onResume(){
+        super.onResume();
+        updateUserString();
+    }
 
     protected void onPause(){super.onPause();}
 

@@ -7,9 +7,10 @@ import android.graphics.Color;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -24,7 +25,6 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     public static int indicator;
     static ArrayList<Region> AZRegionList = new ArrayList<>();
-    static ArrayList<TextView> AZViewRegionList = new ArrayList<>();
     private Calendar calendar;
     private Timestamp tstamp;
     private long time0,time1;
@@ -48,6 +48,12 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         initialize();
         setImageViewLayoutListeners();
         mContext = this;
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM, WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+        //^^ prevents softkeyboard from opening despite edittext gaining focus
+        EditText text = (EditText) findViewById(R.id.a_to_z_text_field);
+        text.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        text.setTextIsSelectable(true);
+        text.requestFocus();
     }
 
     @Override
@@ -459,6 +465,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void hideUserString(){
         EditText editText = (EditText)findViewById(R.id.a_to_z_text_field);
         if(editText!=null) editText.setText("");
+        editText.setCursorVisible(false); //hides cursor in background so we don't see two
     }
 
     @Override
@@ -479,13 +486,8 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void onResume(){
         super.onResume();
         updateUserString();
-    }
-
-    //force back button to return to home screen
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        EditText text = (EditText) findViewById(R.id.a_to_z_text_field);
+        text.setSelection(text.getText().length()); //put cursor at the end of the text
     }
 
     //call to push Vars.userString to be spoken
