@@ -18,6 +18,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -242,9 +245,9 @@ public class RadialActivity extends AppCompatActivity {
         reinitialize();
     }
 
-    //Handle events triggered by exterior button three, always brings up number menu
+    //Handle events triggered by exterior button three
     public void exteriorButtonFunctionThree(){
-        AToZActivity.indicator = 32;
+        AToZActivity.indicator = (menu.equals("Number Menu")) ? 24 : 32;
         reinitialize();
     }
 
@@ -312,7 +315,8 @@ public class RadialActivity extends AppCompatActivity {
 
     //Method to create regions for the exterior buttons
     public void makeExteriorRegions(){
-        setExteriorButtonText();
+        setExteriorRegionImages();
+        //setExteriorButtonText();
         Region buttonRegion;
         float topx1 = getResources().getDimension(R.dimen.exterior_buttons_width); float topy0 = getResources().getDimension(R.dimen.editable_text_box_height);
         float topy1 = getResources().getDimension(R.dimen.exterior_buttons_height);
@@ -353,8 +357,8 @@ public class RadialActivity extends AppCompatActivity {
         setter = AToZActivity.indicator;
         setMenuType();
         makeRadialRegions();
-        //Reset the text for the exterior buttons
-        setExteriorButtonText();
+        //Set the images for the exterior buttons
+        setExteriorRegionImages();
         //Throw away any character the user might've passed over while swapping keyboards
         if(!charStack.empty()) charStack.pop();
         //Reset the triggers to prevent instant keyboard swaps on new keyboard start
@@ -362,24 +366,47 @@ public class RadialActivity extends AppCompatActivity {
         canResume = false;
     }
 
-    //Setter for exterior button text
-    public void setExteriorButtonText(){
-        Button button;
-        button = (Button)findViewById(R.id.exterior_button_0);
-        if(menu.equals("Menu 1")) {button.setText(R.string.menu_1);}
-        else{button.setText(R.string.menu_1);}
-
-        button = (Button)findViewById(R.id.exterior_button_1);
-        if(menu.equals("Menu 1")||menu.equals("Menu 2")){button.setText(R.string.menu_3);}
-        else{button.setText(R.string.menu_2);}
-
-        button = (Button)findViewById(R.id.exterior_button_2);
-        if(menu.equals("Menu 4")){button.setText(R.string.menu_3);}
-        else{button.setText(R.string.menu_4);}
-
-        button = (Button)findViewById(R.id.exterior_button_3);
-        button.setText(R.string.number_menu);
-
+    //Setter for exterior region images
+    public void setExteriorRegionImages(){
+        ImageView iv;
+        GlideDrawableImageViewTarget imageViewTarget;
+        int drawable;
+        iv = (ImageView)findViewById(R.id.exterior_button_0);
+        //Determine drawable for ExButton0
+        drawable = (menu.equals("Menu 1")) ? R.drawable.zone2 : R.drawable.zone1;
+        imageViewTarget = new GlideDrawableImageViewTarget(iv);
+        Glide.with(this)
+                .load(drawable)
+                .override((int)getResources().getDimension(R.dimen.exterior_buttons_width),(int)getResources().getDimension(R.dimen.exterior_buttons_height))
+                .fitCenter()
+                .into(imageViewTarget);
+        iv = (ImageView)findViewById(R.id.exterior_button_1);
+        //Determine drawable for ExButton1
+        drawable = (menu.equals("Menu 1")||menu.equals("Menu 2")) ? R.drawable.zone3 : R.drawable.zone2;
+        imageViewTarget = new GlideDrawableImageViewTarget(iv);
+        Glide.with(this)
+                .load(drawable)
+                .override((int)getResources().getDimension(R.dimen.exterior_buttons_width),(int)getResources().getDimension(R.dimen.exterior_buttons_height))
+                .fitCenter()
+                .into(imageViewTarget);
+        iv = (ImageView)findViewById(R.id.exterior_button_2);
+        //Determine drawable for ExButton2
+        drawable = (menu.equals("Menu 1")||menu.equals("Menu 2")||menu.equals("Menu 3")) ? R.drawable.zone4 : R.drawable.zone3;
+        imageViewTarget = new GlideDrawableImageViewTarget(iv);
+        Glide.with(this)
+                .load(drawable)
+                .override((int)getResources().getDimension(R.dimen.exterior_buttons_width),(int)getResources().getDimension(R.dimen.exterior_buttons_height))
+                .fitCenter()
+                .into(imageViewTarget);
+        iv = (ImageView)findViewById(R.id.exterior_button_3);
+        //Determine drawable for ExButton3
+        drawable = (menu.equals("Number Menu")) ? R.drawable.zone4 : R.drawable.zone5;
+        imageViewTarget = new GlideDrawableImageViewTarget(iv);
+        Glide.with(this)
+                .load(drawable)
+                .override((int)getResources().getDimension(R.dimen.exterior_buttons_width),(int)getResources().getDimension(R.dimen.exterior_buttons_height))
+                .fitCenter()
+                .into(imageViewTarget);
     }
 
     //Remove all dynamically created buttons from view; not the exterior buttons
@@ -469,7 +496,7 @@ public class RadialActivity extends AppCompatActivity {
         else if(setter==8) menu = "Menu 2";
         else if(setter==16) menu = "Menu 3";
         else if(setter==24) menu = "Menu 4";
-        else if(setter==32) menu = "Number Menu";
+        else if(setter==32) {menu = "Number Menu";   System.out.println("Set menu to numbahs");}
         else{throw new RuntimeException("Unknown menu type");}
     }
 
