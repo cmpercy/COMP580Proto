@@ -95,6 +95,17 @@
         app:srcCompat="@drawable/edit_text"
         android:contentDescription="@string/menu_space"
         android:layout_alignBottom="@+id/zone3_button"
-        android:layout_alignEnd="@+id/numbers_button" />
+        android:layout_alignEnd="@+id/numbers_button"
+        android:onClick="aToZButtonClicked" />
+
+    <ImageView
+        android:id="@+id/help_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/question_mark"
+        android:contentDescription="@string/help_description"
+        android:layout_alignTop="@+id/zone2_button"
+        android:layout_alignEnd="@+id/zone2_button"
+        android:onClick="aToZButtonClicked" />
 
 </RelativeLayout>

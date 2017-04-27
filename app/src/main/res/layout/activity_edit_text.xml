@@ -72,7 +72,7 @@
         android:layout_alignParentEnd="true"
         android:clickable="true"
         android:onClick="editTextButtonFunction"
-        app:srcCompat="@drawable/question_mark"
+        app:srcCompat="@drawable/back_circle"
         android:contentDescription="@string/help_description"
         />
 

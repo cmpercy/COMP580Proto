@@ -12,6 +12,7 @@ import android.speech.tts.TextToSpeech.*;
 
 import java.util.Locale;
 
+//NOT ACTUALLY IN USE AT THE MOMENT, APP STARTS IN ATOZACTIVITY
 public class MainActivity extends AppCompatActivity implements OnInitListener{
 
     RelativeLayout rl;

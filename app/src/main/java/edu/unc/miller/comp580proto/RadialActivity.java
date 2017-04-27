@@ -292,7 +292,7 @@ public class RadialActivity extends AppCompatActivity {
             butt.setId(i);
             butt.setX((float)xpos-40);
             butt.setY((float)ypos-40);
-            //butt.setAlpha(0.0f);      //makes buttons transparent, yet visible when uncommented
+            butt.setAlpha(0.0f);      //makes buttons invisible when uncommented
             butt.setWidth(buttonWidth);
             butt.setHeight(buttonHeight);
             buttonTextSetter(butt,setter);   //set the text for the circular button
@@ -324,7 +324,7 @@ public class RadialActivity extends AppCompatActivity {
         exteriorRegionArray[2] = buttonRegion;
         buttonRegion = new Region(screenwidth-topx1,screenwidth,screenheight-topy1/2,screenheight+topy1,"NUMBERS");
         exteriorRegionArray[3] = buttonRegion;
-        drawOverExteriorRegions();              //uncomment to draw green boxes over active exterior regions
+        //drawOverExteriorRegions();              //uncomment to draw green boxes over active exterior regions
     }
 
     //Draws green boxes over active exterior regions
@@ -435,46 +435,6 @@ public class RadialActivity extends AppCompatActivity {
         if(in==39){imv.setImageResource(R.drawable.seven);}if(in==40){imv.setImageResource(R.drawable.eight);}if(in==41){imv.setImageResource(R.drawable.nine);}
     }
 
-//    //Pick the text to use for the button
-//    public void buttonTextSetter(Button b, int in){
-//        if(in==0){b.setText("A");}if(in==1){b.setText("B");}if(in==2){b.setText("C");}
-//        if(in==3){b.setText("D");}if(in==4){b.setText("E");}if(in==5){b.setText("F");}
-//        if(in==6){b.setText("G");}if(in==7){b.setText("H");}if(in==8){b.setText("I");}
-//        if(in==9){b.setText("J");}if(in==10){b.setText("K");}if(in==11){b.setText("L");}
-//        if(in==12){b.setText("M");}if(in==13){b.setText("N");}if(in==14){b.setText("O");}
-//        if(in==15){b.setText("P");}if(in==16){b.setText("Q");}if(in==17){b.setText("R");}
-//        if(in==18){b.setText("S");}if(in==19){b.setText("T");}if(in==20){b.setText("U");}
-//        if(in==21){b.setText("V");}if(in==22){b.setText("W");}if(in==23){b.setText("X");}
-//        if(in==24){b.setText("Y");}if(in==25){b.setText("Z");}if(in==26){b.setText(".");}
-//        if(in==27){b.setText(",");}if(in==28){b.setText("!");}if(in==29){b.setText("?");}
-//        if(in==30){b.setText(";");}if(in==31){b.setText("@");}
-//    }
-//
-//    //Pick the resource to load into an imageview
-//    //24point font for the letters
-//    public void imageResSetter(ImageView imv, int in){
-//        if(in==0){imv.setImageResource(R.drawable.a);}if(in==1){imv.setImageResource(R.drawable.b);}if(in==2){imv.setImageResource(R.drawable.c);}
-//        if(in==3){imv.setImageResource(R.drawable.d);}if(in==4){imv.setImageResource(R.drawable.e);}if(in==5){imv.setImageResource(R.drawable.f);}
-//        if(in==6){imv.setImageResource(R.drawable.g);}if(in==7){imv.setImageResource(R.drawable.h);}if(in==8){imv.setImageResource(R.drawable.i);}
-//        if(in==9){imv.setImageResource(R.drawable.j);}if(in==10){imv.setImageResource(R.drawable.k);}if(in==11){imv.setImageResource(R.drawable.l);}
-//        if(in==12){imv.setImageResource(R.drawable.m);}if(in==13){imv.setImageResource(R.drawable.n);}if(in==14){imv.setImageResource(R.drawable.o);}
-//        if(in==15){imv.setImageResource(R.drawable.p);}if(in==16){imv.setImageResource(R.drawable.q);}if(in==17){imv.setImageResource(R.drawable.r);}
-//        if(in==18){imv.setImageResource(R.drawable.s);}if(in==19){imv.setImageResource(R.drawable.t);}if(in==20){imv.setImageResource(R.drawable.u);}
-//        if(in==21){imv.setImageResource(R.drawable.v);}if(in==22){imv.setImageResource(R.drawable.w);}if(in==23){imv.setImageResource(R.drawable.x);}
-//        if(in==24){imv.setImageResource(R.drawable.y);}if(in==25){imv.setImageResource(R.drawable.z);}if(in==26){imv.setImageResource(R.drawable.period);}
-//        if(in==27){imv.setImageResource(R.drawable.comma);}if(in==28){imv.setImageResource(R.drawable.exclamation);}if(in==29){imv.setImageResource(R.drawable.question);}
-//        if(in==30){imv.setImageResource(R.drawable.semicolon);}if(in==31){imv.setImageResource(R.drawable.at);}
-//    }
-
-    public void backspacePressed(View view){
-        deleteLastCharUserString();
-    }
-
-    public void spacePressed(View view){
-        appendUserString(" ");
-        print(" ");
-    }
-
     public void drawRegions(){
         rl = (RelativeLayout)findViewById(R.id.activity_radial);
         for(int i=0; i<regionList.size();i++){
@@ -487,18 +447,6 @@ public class RadialActivity extends AppCompatActivity {
             rl.addView(butt);
 
         }
-    }
-
-    //Delete the last character of the userString
-    public void deleteLastCharUserString(){
-        String rephrase;
-        if(Vars.userString != null && Vars.userString.length() >= 1){
-            rephrase = Vars.userString.substring(0,Vars.userString.length()-1);
-            Vars.userString = rephrase;
-        }
-        EditText editText = (EditText)findViewById(R.id.radial_text_field);
-        if(editText != null) editText.setText(Vars.userString);
-        print("Deleted last character");
     }
 
     public void appendUserString(String s){
@@ -581,5 +529,4 @@ public class RadialActivity extends AppCompatActivity {
     public static <AnyType> void print(AnyType s){
         System.out.println(s);
     }
-    public static <AnyType> void printContinuous(AnyType s) {System.out.print(s);}
 }

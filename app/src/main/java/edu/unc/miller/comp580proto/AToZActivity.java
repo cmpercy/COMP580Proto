@@ -31,7 +31,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     static boolean changedActivity;         //needs to be reset when leaving other activities in order to keep reading touch input
     boolean startedCheckingTime;
     boolean canResume = true;
-    boolean checkingAZ0,checkingAZ1,checkingAZ2,checkingAZ3,checkingAZ4, checkingAZ5, checkingAZ6;
+    boolean checkingAZ0,checkingAZ1,checkingAZ2,checkingAZ3,checkingAZ4, checkingAZ5, checkingAZ6, checkingAZ7;
     Context mContext;
     RelativeLayout rl;
     Region centralRegion;
@@ -60,7 +60,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public boolean onTouchEvent(MotionEvent e){
         //---ROUTINES FOR AZ BUTTONS BELOW---
         //Check AZ0 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6&&!checkingAZ7){
             Region tempRegion = AZRegionList.get(0);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -82,7 +82,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ1 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6&&!checkingAZ7){
             Region tempRegion = AZRegionList.get(1);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -104,7 +104,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ2 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6&&!checkingAZ7){
             Region tempRegion = AZRegionList.get(2);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -126,7 +126,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ3 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6&&!checkingAZ7){
             Region tempRegion = AZRegionList.get(3);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -148,7 +148,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ4 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ5&&!checkingAZ6){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ5&&!checkingAZ6&&!checkingAZ7){
             Region tempRegion = AZRegionList.get(4);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -170,7 +170,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
             }
         }
         //Check AZ5 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ6){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ6&&!checkingAZ7){
             Region tempRegion = AZRegionList.get(5);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
@@ -193,11 +193,11 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         }
 
         //Check AZ6 for possible keyboard menu transition
-        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5){
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ7){
             Region tempRegion = AZRegionList.get(6);
             //If event is in bounds of this region...
             if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
-                System.out.println("Running exRegionFive");
+                System.out.println("Running exRegionSix");
                 checkingAZ6 = true;
                 if(!startedCheckingTime) setTimeZero();
                 if(startedCheckingTime) setTimeOne();
@@ -212,6 +212,28 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 changedActivity = false;
                 startedCheckingTime = false;
                 checkingAZ6 = false;
+            }
+        }
+        //Check AZ7 for possible keyboard menu transition
+        if(!changedActivity&&!checkingAZ0&&!checkingAZ1&&!checkingAZ2&&!checkingAZ3&&!checkingAZ4&&!checkingAZ5&&!checkingAZ6){
+            Region tempRegion = AZRegionList.get(7);
+            //If event is in bounds of this region...
+            if(tempRegion.checkBounds(e.getRawX(),e.getRawY())&&canResume){
+                System.out.println("Running exRegionSeven");
+                checkingAZ7 = true;
+                if(!startedCheckingTime) setTimeZero();
+                if(startedCheckingTime) setTimeOne();
+                //If the user has been in the region long enough, swap keyboard menus
+                if(Math.abs(time0-time1)>Vars.TRANSITION_HOLD_TIME){
+                    changedActivity = true;
+                    AZButtonFunctionSeven();
+                }
+            }else{
+                //Reset variables when the user has left one of the exterior button regions
+                canResume = true;
+                changedActivity = false;
+                startedCheckingTime = false;
+                checkingAZ7 = false;
             }
         }
         return true;
@@ -265,6 +287,11 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         startActivity(intent);
     }
 
+    public void AZButtonFunctionSeven(){
+        System.out.println("-----Help Page Activity--------");
+        //Insert what you want to help button to do here, preferably start a new activity
+    }
+
     //Grab the initial time when the user entered the region
     public void setTimeZero(){
         System.out.println("Setting time zero");
@@ -311,6 +338,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     }else{
                         addEnterRegion();
                         addEditTextRegion();
+                        addHelpRegion();
                     }
                 }
             });
@@ -348,8 +376,25 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     int xOffset = 50; int yOffset = 25;
                     Region region = new Region(i+xOffset,(i+xOffset)+Vars.ENTER_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.ENTER_BUTTON_HEIGHT,"EDIT TEXT REGION");
                     AZRegionList.add(region);
+                }
+            }
+        });
+    }
+
+    public void addHelpRegion(){
+        ImageView iv = (ImageView)findViewById(R.id.help_button);
+        iv.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                if (i == 0 && i1 == 0 && i2 == 0 && i3 == 0) {
+                    return;
+                }
+                if(AZRegionList.size()==(num+2)){
+                    int xOffset = 0; int yOffset = 0;
+                    Region region = new Region(i+xOffset,(i+xOffset)+Vars.HELP_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.HELP_BUTTON_HEIGHT,"HELP BUTTON REGION");
+                    AZRegionList.add(region);
                 }else{
-                    drawOverAZRegions();        //draws visual regions for the active AZRegions when uncommented
+                    //drawOverAZRegions();
                 }
             }
         });
@@ -393,42 +438,28 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         Intent intent;
         switch(view.getId()){
             case R.id.zone1_button:
-                intent = new Intent(this,RadialActivity.class);
-                indicator = 0;  //0 -> a-h triggered
-                hideUserString();
-                startActivity(intent);
+                AZButtonFunctionOne();
                 break;
             case R.id.zone2_button:
-                intent = new Intent(this,RadialActivity.class);
-                indicator = 8;  //8 -> i-p triggered
-                hideUserString();
-                startActivity(intent);
+                AZButtonFunctionTwo();
                 break;
             case R.id.zone3_button:
-                intent = new Intent(this,RadialActivity.class);
-                indicator = 16; //16 -> q-x triggered
-                hideUserString();
-                startActivity(intent);
+                AZButtonFunctionThree();
                 break;
             case R.id.zone4_button:
-                intent = new Intent(this,RadialActivity.class);
-                indicator = 24; //24 -> y-z triggered
-                hideUserString();
-                startActivity(intent);
+                AZButtonFunctionFour();
                 break;
             case R.id.numbers_button:
-                intent = new Intent(this,RadialActivity.class);
-                indicator = 32;
-                hideUserString();
-                startActivity(intent);
+                AZButtonFunctionZero();
                 break;
             case R.id.edit_text_button:
-                intent = new Intent(this, EditTextActivity.class);
-                hideUserString();
-                startActivity(intent);
+                AZButtonFunctionSix();
                 break;
             case R.id.enter_button:
-                stringToSpeech();
+                AZButtonFunctionFive();
+                break;
+            case R.id.help_button:
+                AZButtonFunctionSeven();
                 break;
             default:
                 //Do nothing
