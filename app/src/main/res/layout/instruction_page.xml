@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:contentDescription="@string/return_user_to_keyboard"
+        android:text="@string/back"
+        android:textSize="36sp"
+        android:textStyle="bold" /><![CDATA[@string
+            android:text="Button" />
+
+        ]]>
+    <ScrollView
+    android:id="@+id/scroll_instructions"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/button">
+        <RelativeLayout
+            android:id="@+id/instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!---how to make a sentence-->
+
+            <ImageView
+                android:id="@+id/how_to_make_a_sentence"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_gravity="end"
+                android:contentDescription="@string/how_to_make_a_sentence"
+                app:srcCompat="@android:drawable/screen_background_dark"/>
+
+            <TextView
+                android:id="@+id/textView_how_to_make_a_sentence"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@+id/how_to_make_a_sentence"
+                android:text="@string/textview" />
+
+            <!---how to change regions-->
+
+            <ImageView
+                android:id="@+id/how_to_change_regions"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_gravity="end"
+                android:layout_below="@id/how_to_make_a_sentence"
+                android:contentDescription="@string/how_to_make_a_sentence"
+                app:srcCompat="@android:drawable/screen_background_dark"/>
+
+            <TextView
+                android:id="@+id/textView_how_to_change_regions"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_below="@+id/textView_how_to_make_a_sentence"
+                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@+id/how_to_change_regions"
+                android:text="@string/textview" />
+
+            <!---how to exit a region-->
+
+            <ImageView
+                android:id="@+id/how_to_exit_a_region"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_gravity="end"
+                android:layout_below="@id/how_to_change_regions"
+                android:contentDescription="@string/how_to_change_regions"
+                app:srcCompat="@android:drawable/screen_background_dark"/>
+
+            <TextView
+                android:id="@+id/textView_how_to_exit_a_region"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_below="@+id/textView_how_to_change_regions"
+                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@+id/how_to_change_regions"
+                android:text="@string/textview" />
+
+            <!---how to edit a sentence-->
+
+            <ImageView
+                android:id="@+id/how_to_edit_a_sentence"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_gravity="end"
+                android:layout_below="@id/how_to_exit_a_region"
+                android:contentDescription="@string/how_to_change_regions"
+                app:srcCompat="@android:drawable/screen_background_dark"/>
+
+            <TextView
+                android:id="@+id/textView_how_to_edit_a_sentence"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_below="@+id/textView_how_to_exit_a_region"
+                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@+id/how_to_change_regions"
+                android:text="@string/textview" />
+
+            <!---how to submit a sentence-->
+
+            <ImageView
+                android:id="@+id/how_to_submit_a_sentence"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_gravity="end"
+                android:layout_below="@id/how_to_edit_a_sentence"
+                android:contentDescription="@string/how_to_change_regions"
+                app:srcCompat="@android:drawable/screen_background_dark"/>
+
+            <TextView
+                android:id="@+id/textView_how_to_submit_a_sentence"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_below="@+id/textView_how_to_edit_a_sentence"
+                android:layout_alignParentEnd="true"
+                android:layout_alignEnd="@+id/how_to_change_regions"
+                android:text="@string/textview" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

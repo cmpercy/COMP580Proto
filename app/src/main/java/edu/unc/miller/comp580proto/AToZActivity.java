@@ -290,6 +290,8 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
     public void AZButtonFunctionSeven(){
         System.out.println("-----Help Page Activity--------");
         //Insert what you want to help button to do here, preferably start a new activity
+        Intent intent = new Intent(this, InstructionPage.class);
+        startActivity(intent);
     }
 
     //Grab the initial time when the user entered the region

@@ -104,8 +104,9 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/question_mark"
         android:contentDescription="@string/help_description"
+        android:onClick="aToZButtonClicked"
+        android:layout_marginStart="28dp"
         android:layout_alignTop="@+id/zone2_button"
-        android:layout_alignEnd="@+id/zone2_button"
-        android:onClick="aToZButtonClicked" />
+        android:layout_toEndOf="@+id/zone4_button" />
 
 </RelativeLayout>

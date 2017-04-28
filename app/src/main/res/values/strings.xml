@@ -33,6 +33,15 @@
     <string name="delete_description">DELETE</string>
     <string name="space_description">SPACE</string>
     <string name="help_description">HELP</string>
+    <string name="back">BACK</string>
+    <string name="gif_holder">gif holder</string>
+    <string name="how_to_change_regions">how to change regions</string>
+    <string name="how_to_edit_a_sentence">how to edit a sentence</string>
+    <string name="how_to_exit_a_region">how to exit a region</string>
+    <string name="how_to_make_a_sentence">how to make a sentence</string>
+    <string name="return_user_to_keyboard">return user to keyboard</string>
+    <string name="how_to_submit_a_sentence">how to submit a sentence</string>
+    <string name="textview">TextView</string>
 
 
 </resources>
