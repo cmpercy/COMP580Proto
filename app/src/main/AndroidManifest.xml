@@ -22,7 +22,10 @@
             android:theme="@style/AppTheme.Transparent"></activity>
         <activity
             android:name=".EditTextActivity"
-            android:theme="@style/AppTheme.Transparent"></activity>
+            android:theme="@style/AppTheme.Transparent" />
+        <activity
+            android:name=".InstructionPage"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

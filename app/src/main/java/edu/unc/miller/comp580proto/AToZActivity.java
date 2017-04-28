@@ -437,7 +437,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
     //Might need to check that these are still mapped correctly
     public void aToZButtonClicked(View view){
-        Intent intent;
+        //Intent intent;
         switch(view.getId()){
             case R.id.zone1_button:
                 AZButtonFunctionOne();

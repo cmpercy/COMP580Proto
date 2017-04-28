@@ -42,7 +42,7 @@
             android:textColor="#000"
             android:clickable="false"
             android:background="#FFF"
-            />
+    />
 
         <ImageView
             android:id="@+id/exterior_button_1"
