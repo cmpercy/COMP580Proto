@@ -426,7 +426,7 @@ public class RadialActivity extends AppCompatActivity {
     //Pick the text to use for the button
     //English characters by frequency layout
     public void buttonTextSetter(Button b, int in){
-        if(in==0){b.setText("e");}if(in==1){b.setText("i");}if(in==2){b.setText("a");}
+        if(in==0){b.setText("e");}if(in==1){b.setText("t");}if(in==2){b.setText("a");}
         if(in==3){b.setText("o");}if(in==4){b.setText("i");}if(in==5){b.setText("n");}
         if(in==6){b.setText("s");}if(in==7){b.setText("r");}if(in==8){b.setText("h");}
         if(in==9){b.setText("d");}if(in==10){b.setText("l");}if(in==11){b.setText("u");}
