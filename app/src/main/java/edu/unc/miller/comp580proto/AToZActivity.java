@@ -54,6 +54,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         text.setRawInputType(InputType.TYPE_CLASS_TEXT);
         text.setTextIsSelectable(true);
         text.requestFocus();
+        setOnLongPressListeners(); //sets on long press listeners
     }
 
     @Override
@@ -529,5 +530,72 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
         Vars.userString = ""; //reset userString after spoken
         EditText text = (EditText) findViewById(R.id.a_to_z_text_field);
         if (text.getText() != null) text.getText().clear(); //clear text field after spoken
+    }
+
+    public void setOnLongPressListeners() {
+        ImageView numbers = (ImageView) findViewById(R.id.numbers_button);
+        numbers.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
+        ImageView zone1 = (ImageView) findViewById(R.id.zone1_button);
+        zone1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
+        ImageView zone2 = (ImageView) findViewById(R.id.zone2_button);
+        zone2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
+        ImageView zone3 = (ImageView) findViewById(R.id.zone3_button);
+        zone3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
+        ImageView zone4 = (ImageView) findViewById(R.id.zone4_button);
+        zone4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
+        ImageView enter = (ImageView) findViewById(R.id.enter_button);
+        enter.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
+        ImageView edit_text = (ImageView) findViewById(R.id.edit_text_button);
+        edit_text.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
+        ImageView help = (ImageView) findViewById(R.id.help_button);
+        help.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                aToZButtonClicked(v);
+                return true;
+            }
+        });
     }
 }

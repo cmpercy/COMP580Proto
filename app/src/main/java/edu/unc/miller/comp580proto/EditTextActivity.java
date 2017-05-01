@@ -110,11 +110,7 @@ public class EditTextActivity extends AppCompatActivity {
                 //If the user has been in the region long enough, do something
                 if(Math.abs(time0-time1)>Vars.EDIT_TEXT_TRANSITION_HOLD_TIME){
                     changedActivity = true;
-                    try {
-                        ETButtonDeleteFunction();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+                    ETButtonDeleteFunction();
                 }
             }else{
                 //Reset variables when the user has left one of the exterior button regions
@@ -200,23 +196,21 @@ public class EditTextActivity extends AppCompatActivity {
     //Insert logic for delete button
     //Recall that there is a delete last char method in the RadialActivity class called deleteLastCharUserString
     //DO NOT REMOVE resetTimer OR resetFlags IF YOU WANT CONTINUOUS MOTION EVENT READINGS
-    public void ETButtonDeleteFunction() throws IOException {
-        try{
-            EditText text = (EditText) findViewById(R.id.editactivity_text_field);
+    public void ETButtonDeleteFunction() {
+        EditText text = (EditText) findViewById(R.id.editactivity_text_field);
+        if (text.getSelectionStart() == 0) { //we are at start of string, do nothing
+            //do nothing
+        }
+        else { //otherwise delete and move cursor
             int position = text.getSelectionStart();
-
             SpannableStringBuilder replacer = new SpannableStringBuilder(text.getText());
-            replacer.replace(position-1, position, ""); //replaces character to the left with the empty string
+            replacer.replace(position - 1, position, ""); //replaces character to the left with the empty string
             text.setText(replacer);
-            text.setSelection(position-1); //sets cursor one character before it used to be
+            text.setSelection(position - 1); //sets cursor one character before it used to be
             Vars.userString = text.getText().toString(); //updates userString
-            resetTimer(); resetFlags();
+            resetTimer();
+            resetFlags();
         }
-        catch(IndexOutOfBoundsException e){
-            System.err.println("IndexOutOfBoundsException: " + e.getMessage());
-        }
-
-
     }
 
     //Insert logic for space button
@@ -268,11 +262,7 @@ public class EditTextActivity extends AppCompatActivity {
                ETButtonRightArrowFunction();
                break;
            case R.id.delete_button:
-               try {
-                   ETButtonDeleteFunction();
-               } catch (IOException e) {
-                   e.printStackTrace();
-               }
+               ETButtonDeleteFunction();
                break;
            case R.id.space_button:
                ETButtonSpaceFunction();
