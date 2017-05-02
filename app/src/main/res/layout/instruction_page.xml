@@ -3,6 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_instruciton"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -36,18 +37,58 @@
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
                 android:layout_gravity="end"
+                android:layout_below="@+id/title_how_to_make_a_sentence"
                 android:contentDescription="@string/how_to_make_a_sentence"/>
 
             <TextView
                 android:id="@+id/textView_how_to_make_a_sentence"
                 android:layout_width="600dp"
                 android:layout_height="400dp"
-                android:layout_margin="25dp"
-                android:layout_alignParentEnd="true"
                 android:layout_alignEnd="@+id/how_to_make_a_sentence"
-                android:text="@string/textview" />
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/title_how_to_make_a_sentence"
+                android:layout_margin="25dp"
+                android:paddingTop="20dp"
+                android:lineSpacingExtra="18sp"
+                android:text="@string/HTMS"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/title_how_to_make_a_sentence"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:fontFamily="sans-serif"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:text="@string/how_to_make_a_sentence" />
+
 
             <!---how to change regions-->
+            <TextView
+                android:id="@+id/title_how_to_change_regions"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_below="@id/how_to_make_a_sentence"
+                android:fontFamily="sans-serif"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:text="@string/how_to_change_regions"
+                />
 
             <ImageView
                 android:id="@+id/how_to_change_regions"
@@ -55,7 +96,7 @@
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
                 android:layout_gravity="end"
-                android:layout_below="@id/how_to_make_a_sentence"
+                android:layout_below="@id/title_how_to_change_regions"
                 android:contentDescription="@string/how_to_make_a_sentence"
                 app:srcCompat="@android:drawable/screen_background_dark"
                 />
@@ -65,12 +106,36 @@
                 android:layout_width="600dp"
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
-                android:layout_below="@+id/textView_how_to_make_a_sentence"
+                android:layout_below="@+id/title_how_to_change_regions"
                 android:layout_alignParentEnd="true"
                 android:layout_alignEnd="@+id/how_to_change_regions"
-                android:text="@string/textview" />
+                android:paddingTop="20dp"
+                android:lineSpacingExtra="18sp"
+                android:text="@string/HTCR"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"
+                />
+
 
             <!---how to exit a region-->
+            <TextView
+                android:id="@+id/title_how_to_exit_a_region"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_below="@id/how_to_change_regions"
+                android:fontFamily="sans-serif"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:text="@string/how_to_exit_a_region"
+                />
+
 
             <ImageView
                 android:id="@+id/how_to_exit_a_region"
@@ -78,7 +143,7 @@
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
                 android:layout_gravity="end"
-                android:layout_below="@id/how_to_change_regions"
+                android:layout_below="@id/title_how_to_exit_a_region"
                 android:contentDescription="@string/how_to_change_regions"
                 app:srcCompat="@android:drawable/screen_background_dark"/>
 
@@ -87,12 +152,34 @@
                 android:layout_width="600dp"
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
-                android:layout_below="@+id/textView_how_to_change_regions"
+                android:layout_below="@+id/title_how_to_exit_a_region"
                 android:layout_alignParentEnd="true"
                 android:layout_alignEnd="@+id/how_to_change_regions"
-                android:text="@string/textview" />
+                android:paddingTop="20dp"
+                android:lineSpacingExtra="18sp"
+                android:text="@string/HTER"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"/>
 
             <!---how to edit a sentence-->
+
+            <TextView
+                android:id="@+id/title_how_to_edit_a_sentence"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_below="@id/how_to_exit_a_region"
+                android:fontFamily="sans-serif"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:text="@string/how_to_edit_a_sentence"
+                />
 
             <ImageView
                 android:id="@+id/how_to_edit_a_sentence"
@@ -100,7 +187,7 @@
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
                 android:layout_gravity="end"
-                android:layout_below="@id/how_to_exit_a_region"
+                android:layout_below="@id/title_how_to_edit_a_sentence"
                 android:contentDescription="@string/how_to_change_regions"
                 app:srcCompat="@android:drawable/screen_background_dark"/>
 
@@ -109,12 +196,34 @@
                 android:layout_width="600dp"
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
-                android:layout_below="@+id/textView_how_to_exit_a_region"
+                android:layout_below="@+id/title_how_to_edit_a_sentence"
                 android:layout_alignParentEnd="true"
                 android:layout_alignEnd="@+id/how_to_change_regions"
-                android:text="@string/textview" />
+                android:paddingTop="20dp"
+                android:lineSpacingExtra="18sp"
+                android:text="@string/HTES"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"
+                />
 
             <!---how to submit a sentence-->
+            <TextView
+                android:id="@+id/title_how_to_submit_a_sentence"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_below="@id/how_to_edit_a_sentence"
+                android:fontFamily="sans-serif"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                android:text="@string/how_to_submit_a_sentence"
+                />
 
             <ImageView
                 android:id="@+id/how_to_submit_a_sentence"
@@ -122,7 +231,7 @@
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
                 android:layout_gravity="end"
-                android:layout_below="@id/how_to_edit_a_sentence"
+                android:layout_below="@id/title_how_to_submit_a_sentence"
                 android:contentDescription="@string/how_to_change_regions"
                 app:srcCompat="@android:drawable/screen_background_dark"/>
 
@@ -131,10 +240,14 @@
                 android:layout_width="600dp"
                 android:layout_height="400dp"
                 android:layout_margin="25dp"
-                android:layout_below="@+id/textView_how_to_edit_a_sentence"
+                android:layout_below="@+id/title_how_to_submit_a_sentence"
                 android:layout_alignParentEnd="true"
                 android:layout_alignEnd="@+id/how_to_change_regions"
-                android:text="@string/textview" />
+                android:paddingTop="20dp"
+                android:lineSpacingExtra="18sp"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="24sp"
+                android:text="@string/HTSS" />
 
 
         </RelativeLayout>

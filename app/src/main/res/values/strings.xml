@@ -35,13 +35,50 @@
     <string name="help_description">HELP</string>
     <string name="back">BACK</string>
     <string name="gif_holder">gif holder</string>
-    <string name="how_to_change_regions">how to change regions</string>
-    <string name="how_to_edit_a_sentence">how to edit a sentence</string>
-    <string name="how_to_exit_a_region">how to exit a region</string>
-    <string name="how_to_make_a_sentence">how to make a sentence</string>
+
+    <!-- Used for Instruction page-->
+    <string name="how_to_change_regions">How to Change Regions</string>
+    <string name="how_to_edit_a_sentence">How to Edit a Sentence</string>
+    <string name="how_to_exit_a_region">How to Exit a Region</string>
+    <string name="how_to_make_a_sentence">How to Make A Sentence</string>
     <string name="return_user_to_keyboard">return user to keyboard</string>
-    <string name="how_to_submit_a_sentence">how to submit a sentence</string>
+    <string name="how_to_submit_a_sentence">How to Submit a Sentence</string>
     <string name="textview">TextView</string>
+
+    <!--Text instructions for app-->
+    <string name="HTMS">
+        \u25CF Open a zone by either tapping it or holding your \n  \u00A0 \u00A0  finger on it\n
+        \u25CF You can select a letter by tapping the button\n
+        \u25cf You can also select a letter by dragging your finger\n \u00A0 \u00A0 to the button and then dragging your finger to\n \u00A0 \u00A0  select\n
+    </string>
+
+    <string name="HTCR">
+        \u25CF You can change regions by sliding your finger over to\n \u00A0 \u00A0 one of the four buttons in the four corners and hold \n \u00A0 \u00A0 your finger there\n
+        \u25CF Slide you finger off once it has change and the enter \n \u00A0 \u00A0 the new zone
+    </string>
+
+    <string name="HTER">
+        \u25CF Tap select in the center of the screen\n
+        \u25CF Or slide your finger to select and lift your finger off\n \u00A0 \u00A0 the screen\n
+        \u25CF A space will automatically be added to the end of \n \u00A0 \u00A0 your word
+    </string>
+
+    <string name="HTES">
+        \u25CF Tap the EDIT TEXT button on the home screen\n
+        \u25CF You can move the cursor by using the LEFT or RIGHT\n \u00A0 \u00A0 arrow buttons\n
+        \u25CF You can add a SPACE by using the SPACE button\n
+        \u25CF Remove a letter with the DELETE button\n
+        \u25CF You can select any of these options by tapping the\n \u00A0 \u00A0 button\n
+        \u25CF Or by sliding your finger over it
+    </string>
+
+    <string name="HTSS">
+        \u25CF Tap the submit button on the home screen\n
+        \u25CF Or slide your finger to it and hold it there\n
+        \u25CF Your sentence will be read out loud
+
+    </string>
+
 
 
 </resources>
