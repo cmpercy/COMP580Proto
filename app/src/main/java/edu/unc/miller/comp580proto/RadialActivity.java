@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -24,9 +25,10 @@ import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.Stack;
 
-public class RadialActivity extends AppCompatActivity {
+public class RadialActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
 
     private final String TAG = "RadialActivity";
     ArrayList<Region> regionList;
@@ -47,6 +49,7 @@ public class RadialActivity extends AppCompatActivity {
     private boolean changedActivity;                        //indicates if the activity layout has changed recently
     private boolean canResume = true;                       //indicates if the motionevent in a region can be triggered/resumed
     private boolean checkingExteriorRegionZero, checkingExteriorRegionOne, checkingExteriorRegionTwo, checkingExteriorRegionThree;
+    TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,9 @@ public class RadialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_radial);
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         initialize();
+        Intent checkTTS = new Intent();
+        checkTTS.setAction(TextToSpeech.Engine.ACTION_CHECK_TTS_DATA);
+        startActivityForResult(checkTTS, 0); //check if tts is available
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM, WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         //^^ prevents softkeyboard from opening despite edittext gaining focus
         EditText text = (EditText) findViewById(R.id.radial_text_field);
@@ -85,6 +91,7 @@ public class RadialActivity extends AppCompatActivity {
                         Region tempregion = regionList.get(i);
                         if(tempregion.checkBounds(e.getRawX(),e.getRawY())){
                                     charStack.push(tempregion.getLabel());
+                                    stringToSpeech(charStack.peek());
                                     Log.i(TAG,"Character pushed");
                         }
                     }
@@ -267,6 +274,7 @@ public class RadialActivity extends AppCompatActivity {
                 Button registeredButton = (Button)findViewById(v.getId());
                 if(registeredButton!=null){
                     //Update the userString
+                    stringToSpeech(registeredButton.getText().toString());
                     appendUserString(registeredButton.getText().toString());
                     print(registeredButton.getText());
                 }
@@ -551,6 +559,26 @@ public class RadialActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AToZActivity.class);
         AToZActivity.changedActivity = false;
         startActivity(intent);
+    }
+
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS) {
+                tts = new TextToSpeech(this, this); //initialize tts if available
+            }
+        }
+    }
+
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(Locale.US); //set language to US English
+            tts.setPitch(1.1f);
+        }
+    }
+
+    //call to push Vars.userString to be spoken
+    public void stringToSpeech(String s) {
+        tts.speak(s, TextToSpeech.QUEUE_ADD, null);
     }
 
     public static <AnyType> void print(AnyType s){

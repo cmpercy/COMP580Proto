@@ -335,7 +335,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     }
                     //Create slide regions when ready and if they don't already exist
                     if(AZRegionList.size()<=(num-1)){
-                        int xOffset = 50; int yOffset = 25;
+                        int xOffset = 15; int yOffset = 0;
                         Region region = new Region(i+xOffset,(i+xOffset)+Vars.AZ_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.AZ_BUTTON_HEIGHT,"AZ Region"+AZRegionList.size());
                         AZRegionList.add(region);
                     }else{
@@ -358,7 +358,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 }
                 //Create slide regions when ready and if they don't already exist
                 if(AZRegionList.size()==num){
-                    int xOffset = 50; int yOffset = 25;
+                    int xOffset = 15; int yOffset = 0;
                     Region region = new Region(i+xOffset,(i+xOffset)+Vars.ENTER_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.ENTER_BUTTON_HEIGHT,"ENTER REGION");
                     AZRegionList.add(region);
                 }
@@ -376,7 +376,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 }
                 //Create slide regions when ready and if they don't already exist
                 if(AZRegionList.size()==(num+1)){
-                    int xOffset = 50; int yOffset = 25;
+                    int xOffset = 15; int yOffset = 0;
                     Region region = new Region(i+xOffset,(i+xOffset)+Vars.ENTER_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.ENTER_BUTTON_HEIGHT,"EDIT TEXT REGION");
                     AZRegionList.add(region);
                 }
@@ -393,7 +393,7 @@ public class AToZActivity extends AppCompatActivity implements TextToSpeech.OnIn
                     return;
                 }
                 if(AZRegionList.size()==(num+2)){
-                    int xOffset = 0; int yOffset = 0;
+                    int xOffset = -25; int yOffset = -25;
                     Region region = new Region(i+xOffset,(i+xOffset)+Vars.HELP_BUTTON_WIDTH,i1+yOffset,(i1+yOffset)+Vars.HELP_BUTTON_HEIGHT,"HELP BUTTON REGION");
                     AZRegionList.add(region);
                 }else{
