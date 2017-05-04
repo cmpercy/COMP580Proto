@@ -27,6 +27,7 @@
         android:layout_centerVertical="true"
         android:clickable="true"
         android:onClick="editTextButtonFunction"
+        android:layout_marginLeft="270dp"
         app:srcCompat="@drawable/left_arrow"
         android:contentDescription="@string/left_arrow_description"/>
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginRight="270dp"
         android:clickable="true"
         android:onClick="editTextButtonFunction"
         app:srcCompat="@drawable/right_arrow"
@@ -59,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
         android:clickable="true"
         android:onClick="editTextButtonFunction"
         app:srcCompat="@drawable/space_button"

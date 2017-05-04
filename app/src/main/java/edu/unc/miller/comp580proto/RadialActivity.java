@@ -78,31 +78,34 @@ public class RadialActivity extends AppCompatActivity implements TextToSpeech.On
         makeExteriorRegions();
     }
 
+
+    boolean speak;
+
     @Override
     public boolean onTouchEvent(MotionEvent e){
         switch(e.getAction()){
             //Handle movement gestures across the screen
             case MotionEvent.ACTION_MOVE:
-                //If the event is in a region, push the char onto the stack (only one at a time)
+                //If the event is in a region, push the char onto the stack (only one at a time) w/ replacement
                 //Also, only checks the circular regions if the stack is empty
-                if(charStack.empty()){
                     //Check each region to see if the touch event is in one of the button regions
                     for(int i=0; i<regionList.size();i++){
                         Region tempregion = regionList.get(i);
                         if(tempregion.checkBounds(e.getRawX(),e.getRawY())){
+                                    //Throw away what was on the stack if the user goes to another character
+                                    if(!charStack.empty()) charStack.pop();
                                     charStack.push(tempregion.getLabel());
-                                    stringToSpeech(charStack.peek());
+                                    if(!tts.isSpeaking())stringToSpeech(charStack.peek());
                                     Log.i(TAG,"Character pushed");
                         }
                     }
 
-                }else{
                     if(centralRegion.checkBounds(e.getRawX(),e.getRawY())){
                         //Update the userString
-                        appendUserString(charStack.pop());
+                        if(!charStack.empty()) appendUserString(charStack.pop());
                         Log.i(TAG,"Character released");
                     }
-                }
+
                 //---ROUTINES FOR EXTERIOR BUTTONS BELOW---
                 //Check exterior_region_zero for possible keyboard menu transition
                 if(!changedActivity&&!checkingExteriorRegionOne&&!checkingExteriorRegionTwo&&!checkingExteriorRegionThree){
@@ -578,7 +581,7 @@ public class RadialActivity extends AppCompatActivity implements TextToSpeech.On
 
     //call to push Vars.userString to be spoken
     public void stringToSpeech(String s) {
-        tts.speak(s, TextToSpeech.QUEUE_ADD, null);
+        tts.speak(s, TextToSpeech.QUEUE_FLUSH, null);
     }
 
     public static <AnyType> void print(AnyType s){
