@@ -3,7 +3,6 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_instruciton"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -31,14 +30,24 @@
 
             <!---how to make a sentence-->
 
-            <ImageView
-                android:id="@+id/how_to_make_a_sentence"
-                android:layout_width="600dp"
-                android:layout_height="400dp"
-                android:layout_margin="25dp"
-                android:layout_gravity="end"
-                android:layout_below="@+id/title_how_to_make_a_sentence"
-                android:contentDescription="@string/how_to_make_a_sentence"/>
+            <TextView
+                android:id="@+id/title_how_to_make_a_sentence"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="50dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:textColorLink="@color/colorPrimary"
+                android:fontFamily="sans-serif"
+                android:textColor="@android:color/black"
+                android:text="@string/how_to_make_a_sentence"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
 
             <TextView
                 android:id="@+id/textView_how_to_make_a_sentence"
@@ -54,21 +63,19 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/title_how_to_make_a_sentence"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:fontFamily="sans-serif"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                android:typeface="normal"
-                android:text="@string/how_to_make_a_sentence" />
+            <ImageView
+                android:id="@+id/how_to_make_a_sentence"
+                android:layout_width="600dp"
+                android:layout_height="400dp"
+                android:layout_margin="25dp"
+                android:layout_gravity="end"
+                android:layout_below="@+id/title_how_to_make_a_sentence"
+                android:contentDescription="@string/how_to_make_a_sentence"
+                app:srcCompat="@drawable/how_to_make_a_sentence"
+                />
+
+
+
 
 
             <!---how to change regions-->
@@ -81,13 +88,16 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_below="@id/how_to_make_a_sentence"
+                android:autoLink="web"
                 android:fontFamily="sans-serif"
+                android:linksClickable="true"
+                android:text="@string/how_to_change_regions"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
+                android:textColorLink="@color/colorPrimary"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:typeface="normal"
-                android:text="@string/how_to_change_regions"
                 />
 
             <ImageView
@@ -98,7 +108,7 @@
                 android:layout_gravity="end"
                 android:layout_below="@id/title_how_to_change_regions"
                 android:contentDescription="@string/how_to_make_a_sentence"
-                app:srcCompat="@android:drawable/screen_background_dark"
+                app:srcCompat="@drawable/changing_zones"
                 />
 
             <TextView
@@ -127,13 +137,16 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_below="@id/how_to_change_regions"
+                android:autoLink="web"
                 android:fontFamily="sans-serif"
+                android:linksClickable="true"
+                android:text="@string/how_to_exit_a_region"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
+                android:textColorLink="@color/colorPrimary"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:typeface="normal"
-                android:text="@string/how_to_exit_a_region"
                 />
 
 
@@ -145,7 +158,8 @@
                 android:layout_gravity="end"
                 android:layout_below="@id/title_how_to_exit_a_region"
                 android:contentDescription="@string/how_to_change_regions"
-                app:srcCompat="@android:drawable/screen_background_dark"/>
+                app:srcCompat="@drawable/how_to_exit"
+                />
 
             <TextView
                 android:id="@+id/textView_how_to_exit_a_region"
@@ -172,13 +186,16 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_below="@id/how_to_exit_a_region"
+                android:autoLink="web"
                 android:fontFamily="sans-serif"
+                android:linksClickable="true"
+                android:text="@string/how_to_edit_a_sentence"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
+                android:textColorLink="@color/colorPrimary"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:typeface="normal"
-                android:text="@string/how_to_edit_a_sentence"
                 />
 
             <ImageView
@@ -189,7 +206,7 @@
                 android:layout_gravity="end"
                 android:layout_below="@id/title_how_to_edit_a_sentence"
                 android:contentDescription="@string/how_to_change_regions"
-                app:srcCompat="@android:drawable/screen_background_dark"/>
+                app:srcCompat="@drawable/how_to_edit"/>
 
             <TextView
                 android:id="@+id/textView_how_to_edit_a_sentence"
@@ -216,13 +233,16 @@
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_below="@id/how_to_edit_a_sentence"
+                android:autoLink="web"
                 android:fontFamily="sans-serif"
+                android:linksClickable="true"
+                android:text="@string/how_to_submit_a_sentence"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
+                android:textColorLink="@color/colorPrimary"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 android:typeface="normal"
-                android:text="@string/how_to_submit_a_sentence"
                 />
 
             <ImageView
@@ -233,7 +253,8 @@
                 android:layout_gravity="end"
                 android:layout_below="@id/title_how_to_submit_a_sentence"
                 android:contentDescription="@string/how_to_change_regions"
-                app:srcCompat="@android:drawable/screen_background_dark"/>
+                app:srcCompat="@drawable/how_to_submit_a_sentence"
+                />
 
             <TextView
                 android:id="@+id/textView_how_to_submit_a_sentence"

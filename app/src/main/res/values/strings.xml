@@ -37,13 +37,16 @@
     <string name="gif_holder">gif holder</string>
 
     <!-- Used for Instruction page-->
-    <string name="how_to_change_regions">How to Change Regions</string>
-    <string name="how_to_edit_a_sentence">How to Edit a Sentence</string>
-    <string name="how_to_exit_a_region">How to Exit a Region</string>
-    <string name="how_to_make_a_sentence">How to Make A Sentence</string>
+    <string name="how_to_make_a_sentence"><a href="https://youtu.be/FUCW8GYV6ZQ" target="_blank">How to Make A Sentence</a></string>
+    <string name="how_to_change_regions"><a href="https://youtu.be/6F3Svj92UbA" target="_blank">How to Change Regions</a></string>
+    <string name="how_to_exit_a_region"><a href="https://youtu.be/FUCW8GYV6ZQ" target="_blank">How to Exit a Region</a></string>
+    <string name="how_to_edit_a_sentence"><a href="https://youtu.be/RyqSqR0xe-k" target="_blank">How to Edit a Sentence</a></string>
+    <string name="how_to_submit_a_sentence"><a href="https://youtu.be/fHzAJHWoPdM" target="_blank">How to Submit a Sentence</a></string>
+
+
     <string name="return_user_to_keyboard">return user to keyboard</string>
-    <string name="how_to_submit_a_sentence">How to Submit a Sentence</string>
-    <string name="textview">TextView</string>
+
+
 
     <!--Text instructions for app-->
     <string name="HTMS">
