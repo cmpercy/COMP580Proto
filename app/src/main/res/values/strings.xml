@@ -50,35 +50,37 @@
 
     <!--Text instructions for app-->
     <string name="HTMS">
-        \u25CF Open a zone by either tapping it or holding your \n  \u00A0 \u00A0  finger on it\n
-        \u25CF You can select a letter by tapping the button\n
-        \u25cf You can also select a letter by dragging your finger\n \u00A0 \u00A0 to the button and then dragging your finger to\n \u00A0 \u00A0  select\n
+        \u25CF Open a zone by either tapping it or holding your \n  \u00A0 \u00A0  finger on it.\n
+        \u25CF You can select a letter by tapping and releasing \n  \u00A0 \u00A0 its button.\n
+        \u25CF Or place your finger on the screen (not on a button),\n \u00A0 \u00A0 then drag your finger to a button and then to select.\n
+        \u25CF The letter you hover over will be spoken out loud.\n
+        \u25CF Exit the region after spelling a word. Then \n \u00A0 \u00A0 re-enter a new zone to start a new word.
     </string>
 
     <string name="HTCR">
-        \u25CF You can change regions by sliding your finger over to\n \u00A0 \u00A0 one of the four buttons in the four corners and hold \n \u00A0 \u00A0 your finger there\n
-        \u25CF Slide you finger off once it has change and the enter \n \u00A0 \u00A0 the new zone
+        \u25CF You can change regions by sliding your finger over to\n \u00A0 \u00A0 one of the four buttons in the four corners and \n \u00A0 \u00A0 holding  your finger there.\n
+        \u25CF Slide your finger off once it has changed and then \n \u00A0 \u00A0 enter the new zone.
     </string>
 
     <string name="HTER">
-        \u25CF Tap select in the center of the screen\n
-        \u25CF Or slide your finger to select and lift your finger off\n \u00A0 \u00A0 the screen\n
-        \u25CF A space will automatically be added to the end of \n \u00A0 \u00A0 your word
+        \u25CF Tap select in the center of the screen.\n
+        \u25CF Or slide your finger to select and lift your finger off\n \u00A0 \u00A0 the screen.\n
+        \u25CF A space will automatically be added to the end of \n \u00A0 \u00A0 your word.
     </string>
 
     <string name="HTES">
-        \u25CF Tap the EDIT TEXT button on the home screen\n
-        \u25CF You can move the cursor by using the LEFT or RIGHT\n \u00A0 \u00A0 arrow buttons\n
-        \u25CF You can add a SPACE by using the SPACE button\n
-        \u25CF Remove a letter with the DELETE button\n
-        \u25CF You can select any of these options by tapping the\n \u00A0 \u00A0 button\n
-        \u25CF Or by sliding your finger over it
+        \u25CF Tap the EDIT TEXT button on the home screen.\n
+        \u25CF You can move the cursor by using the LEFT or RIGHT\n \u00A0 \u00A0 arrow buttons.\n
+        \u25CF You can add a SPACE by using the SPACE button.\n
+        \u25CF Remove a letter with the DELETE button.\n
+        \u25CF You can select any of these options by tapping the\n \u00A0 \u00A0 button.\n
+        \u25CF Or by sliding your finger over it.
     </string>
 
     <string name="HTSS">
-        \u25CF Tap the submit button on the home screen\n
-        \u25CF Or slide your finger to it and hold it there\n
-        \u25CF Your sentence will be read out loud
+        \u25CF Tap the submit button on the home screen.\n
+        \u25CF Or slide your finger to it and hold it there.\n
+        \u25CF Your sentence will be read out loud.
 
     </string>
 
