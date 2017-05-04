@@ -8,8 +8,8 @@ public class Vars {
     static final int   BUTTON_HEIGHT = 125;                         //height of most buttons in Radial activity
     static final int   AZ_BUTTON_WIDTH = 250;                       //width of region in AZ activity
     static final int   AZ_BUTTON_HEIGHT = 250;                      //height of regions in AZ activity
-    static final int   EDIT_TEXT_BUTTON_WIDTH = 350;                //width of regions in EditText activity
-    static final int   EDIT_TEXT_BUTTON_HEIGHT = 350;               //height of regions in EditText activity
+    static final int   EDIT_TEXT_BUTTON_WIDTH = 100;                //width of regions in EditText activity
+    static final int   EDIT_TEXT_BUTTON_HEIGHT = 100;               //height of regions in EditText activity
     static final long  EDIT_TEXT_TRANSITION_HOLD_TIME = 750;       //hold time in ms for functions in EditText activity
     static final int   RADIAL_RADIUS = 325;                         //radius of the circle that draws the radial regions
     static final int   ENTER_BUTTON_WIDTH = 250;
